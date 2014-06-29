@@ -1,0 +1,29 @@
+{
+  "name": "detect-browser",
+  "version": "0.0.0",
+  "description": "Unpack a browser type and version from the useragent string",
+  "main": "index.js",
+  "browser": "browser.js",
+  "scripts": {
+    "test": "node test/all.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/detect-browser.git"
+  },
+  "keywords": [
+    "browser",
+    "detect",
+    "useragent"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/detect-browser/issues"
+  },
+  "homepage": "https://github.com/DamonOehlman/detect-browser",
+  "devDependencies": {
+    "semver": "^2.3.1",
+    "tape": "^2.13.3"
+  }
+}
