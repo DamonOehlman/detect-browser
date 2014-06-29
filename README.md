@@ -7,6 +7,9 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![NPM](https://nodei.co/npm/detect-browser.png)](https://nodei.co/npm/detect-browser/)
 
+
+[![browser support](https://ci.testling.com/DamonOehlman/detect-browser.png)](https://ci.testling.com/DamonOehlman/detect-browser)
+
 [![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) 
 
 ## Example Usage
