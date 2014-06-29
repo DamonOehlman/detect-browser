@@ -5,7 +5,8 @@
   "main": "index.js",
   "browser": "browser.js",
   "scripts": {
-    "test": "node test/all.js"
+    "test": "node test/all.js",
+    "gendocs": "gendocs > README.md"
   },
   "stability": "stable",
   "repository": {
