@@ -3,6 +3,7 @@ var browsers = [
   [ 'firefox', /Firefox\/([0-9\.]+)(?:\s|$)/ ],
   [ 'opera', /Opera\/([0-9\.]+)(?:\s|$)/ ],
   [ 'ie', /Trident\/7\.0.*rv\:([0-9\.]+)\).*Gecko$/ ],
+  [ 'ie', /MSIE\s([0-9\.]+);.*Trident\/[4-6].0/ ],
   [ 'bb10', /BB10;\sTouch.*Version\/([0-9\.]+)/ ]
 ];
 
