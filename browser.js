@@ -2,7 +2,8 @@ var browsers = [
   [ 'chrome', /Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/ ],
   [ 'firefox', /Firefox\/([0-9\.]+)(?:\s|$)/ ],
   [ 'opera', /Opera\/([0-9\.]+)(?:\s|$)/ ],
-  [ 'ie', /Trident\/7\.0.*rv\:([0-9\.]+)\).*Gecko$/ ]
+  [ 'ie', /Trident\/7\.0.*rv\:([0-9\.]+)\).*Gecko$/ ],
+  [ 'bb10', /BB10;\sTouch.*Version\/([0-9\.]+)/ ]
 ];
 
 var match = browsers.map(match).filter(isMatch)[0];
