@@ -9,12 +9,12 @@ test('can run detection', function(t) {
 
 test('name detected', function(t) {
   t.plan(1);
-  t.ok(browser.name);
+  t.ok(browser.name, browser.name);
 });
 
 test('version detected', function(t) {
   t.plan(1);
-  t.ok(browser.version);
+  t.ok(browser.version, browser.version);
 });
 
 test('version is semver compatible', function(t) {
