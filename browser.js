@@ -4,11 +4,14 @@ var browsers = [
   [ 'opera', /Opera\/([0-9\.]+)(?:\s|$)/ ],
   [ 'ie', /Trident\/7\.0.*rv\:([0-9\.]+)\).*Gecko$/ ],
   [ 'ie', /MSIE\s([0-9\.]+);.*Trident\/[4-6].0/ ],
-  [ 'bb10', /BB10;\sTouch.*Version\/([0-9\.]+)/ ]
+  [ 'bb10', /BB10;\sTouch.*Version\/([0-9\.]+)/ ],
+  [ 'android', /Android\s([0-9\.]+)/ ],
+  [ 'ios', /iPad\;\sCPU\sOS\s([0-9\._]+)/ ],
+  [ 'ios', /iPhone\;\sCPU\siPhone\sOS\s([0-9\._]+)/ ]
 ];
 
 var match = browsers.map(match).filter(isMatch)[0];
-var parts = match && match[3].split('.').slice(0,3);
+var parts = match && match[3].split(/[._]/).slice(0,3);
 
 while (parts && parts.length < 3) {
   parts.push('0');
