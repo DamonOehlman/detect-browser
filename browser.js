@@ -10,13 +10,13 @@ var browsers = [
 var match = browsers.map(match).filter(isMatch)[0];
 var parts = match && match[3].split('.').slice(0,3);
 
-while (parts.length < 3) {
+while (parts && parts.length < 3) {
   parts.push('0');
 }
 
 // set the name and version
 exports.name = match && match[0];
-exports.version = parts.join('.');
+exports.version = parts && parts.join('.');
 
 function match(pair) {
   return pair.concat(pair[1].exec(navigator.userAgent));
