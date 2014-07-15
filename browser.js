@@ -4,6 +4,7 @@ var browsers = [
   [ 'opera', /Opera\/([0-9\.]+)(?:\s|$)/ ],
   [ 'ie', /Trident\/7\.0.*rv\:([0-9\.]+)\).*Gecko$/ ],
   [ 'ie', /MSIE\s([0-9\.]+);.*Trident\/[4-6].0/ ],
+  [ 'ie', /MSIE\s(7\.0)/ ],
   [ 'bb10', /BB10;\sTouch.*Version\/([0-9\.]+)/ ],
   [ 'android', /Android\s([0-9\.]+)/ ],
   [ 'ios', /iPad\;\sCPU\sOS\s([0-9\._]+)/ ],
