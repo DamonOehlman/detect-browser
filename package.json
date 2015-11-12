@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/DamonOehlman/detect-browser",
   "devDependencies": {
-    "semver": "^2.3.1",
-    "tape": "^2.13.3"
+    "semver": "^5.0.3",
+    "tape": "^4.2.2"
   },
   "testling": {
     "files": "test/*.js",
