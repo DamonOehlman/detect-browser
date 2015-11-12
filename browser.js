@@ -12,7 +12,15 @@ var browsers = [
   [ 'safari', /Safari\/([0-9\._]+)/ ]
 ];
 
-var match = browsers.map(match).filter(isMatch)[0];
+var i = 0, mapped =[];
+for (i = 0; i < browsers.length; i++) {
+  browsers[i] = createMatch(browsers[i]);
+  if (isMatch(browsers[i])) {
+    mapped.push(browsers[i]);
+  }
+}
+
+var match = mapped[0];
 var parts = match && match[3].split(/[._]/).slice(0,3);
 
 while (parts && parts.length < 3) {
@@ -23,7 +31,7 @@ while (parts && parts.length < 3) {
 exports.name = match && match[0];
 exports.version = parts && parts.join('.');
 
-function match(pair) {
+function createMatch(pair) {
   return pair.concat(pair[1].exec(navigator.userAgent));
 }
 
