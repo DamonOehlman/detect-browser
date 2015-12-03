@@ -9,7 +9,8 @@ var browsers = [
   [ 'android', /Android\s([0-9\.]+)/ ],
   [ 'ios', /iPad\;\sCPU\sOS\s([0-9\._]+)/ ],
   [ 'ios',  /iPhone\;\sCPU\siPhone\sOS\s([0-9\._]+)/ ],
-  [ 'safari', /Safari\/([0-9\._]+)/ ]
+  [ 'safari', /Safari\/([0-9\._]+)/ ],
+  [ 'edge', /Edge\/([0-9\._]+)/ ]
 ];
 
 var i = 0, mapped =[];
