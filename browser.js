@@ -1,4 +1,5 @@
 var browsers = [
+  [ 'edge', /Edge\/([0-9\._]+)/ ],
   [ 'chrome', /Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/ ],
   [ 'firefox', /Firefox\/([0-9\.]+)(?:\s|$)/ ],
   [ 'opera', /Opera\/([0-9\.]+)(?:\s|$)/ ],
@@ -9,8 +10,7 @@ var browsers = [
   [ 'android', /Android\s([0-9\.]+)/ ],
   [ 'ios', /iPad\;\sCPU\sOS\s([0-9\._]+)/ ],
   [ 'ios',  /iPhone\;\sCPU\siPhone\sOS\s([0-9\._]+)/ ],
-  [ 'safari', /Safari\/([0-9\._]+)/ ],
-  [ 'edge', /Edge\/([0-9\._]+)/ ]
+  [ 'safari', /Safari\/([0-9\._]+)/ ]
 ];
 
 var i = 0, mapped =[];
