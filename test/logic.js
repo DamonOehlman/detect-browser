@@ -77,6 +77,11 @@ test('detects Opera', function(t) {
     { name: 'opera', version: '9.25.0' }
   );
 
+  assertAgentString(t,
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36 OPR/38.0.2220.31',
+    { name: 'opera', version: '38.0.2220' }
+  );
+
   t.end();
 });
 
