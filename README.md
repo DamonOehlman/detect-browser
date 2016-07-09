@@ -7,9 +7,6 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![NPM](https://nodei.co/npm/detect-browser.png)](https://nodei.co/npm/detect-browser/)
 
-
-[![browser support](https://ci.testling.com/DamonOehlman/detect-browser.png)](https://ci.testling.com/DamonOehlman/detect-browser)
-
 [![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/detect-browser.svg?branch=master)](https://travis-ci.org/DamonOehlman/detect-browser) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/detect-browser/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/detect-browser) 
 
 ## Example Usage
