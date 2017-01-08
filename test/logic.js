@@ -134,3 +134,12 @@ test('detects Safari', function(t) {
 
   t.end();
 });
+
+test('detects Yandex Browser', function(t) {
+    assertAgentString(t,
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 YaBrowser/16.10.0.2774 Safari/537.36',
+        { name: 'yandexbrowser', version: '16.10.0' }
+    );
+
+    t.end();
+});
