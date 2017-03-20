@@ -143,3 +143,12 @@ test('detects Yandex Browser', function(t) {
 
     t.end();
 });
+
+test('handles no browser', function(t) {
+    assertAgentString(t,
+        null,
+        null
+    );
+
+    t.end();
+});
