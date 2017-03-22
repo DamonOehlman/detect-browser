@@ -5,6 +5,15 @@ function assertAgentString(t, agentString, expectedResult) {
   t.deepEqual(detectBrowser(agentString), expectedResult);
 }
 
+test('unknown navigator string returns unknown', function(t) {
+  assertAgentString(t,
+    'Foobar/7.0 Super browser EX plus alpha',
+    { name: 'unknown', version: null }
+  );
+
+  t.end();
+});
+
 test('detects Chrome', function(t) {
   assertAgentString(t,
     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
