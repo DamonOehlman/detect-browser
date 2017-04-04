@@ -9,6 +9,10 @@
 
   <<< examples/simple.js
 
+  Or you can use a switch statement:
+
+  <<< examples/switch.js
+
 **/
 
 exports.name = 'node';

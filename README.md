@@ -1,3 +1,4 @@
+
 # detect-browser
 
 This is a package that attempts to detect a browser vendor and version (in
@@ -12,10 +13,35 @@ a semver compatible format) using a navigator useragent in a browser or
 ## Example Usage
 
 ```js
-var browser = require('detect-browser');
+const browser = require('detect-browser');
 
-console.log(browser.name);
-console.log(browser.version);
+// handle the case where we don't detect the browser
+if (browser) {
+  console.log(browser.name);
+  console.log(browser.version);
+}
+
+```
+
+Or you can use a switch statement:
+
+```js
+const browser = require('detect-browser');
+
+// handle the case where we don't detect the browser
+switch (browser && browser.name) {
+  case 'chrome':
+  case 'firefox':
+    console.log('supported');
+    break;
+
+  case 'edge':
+    console.log('kinda ok');
+    break;
+
+  default:
+    console.log('not supported');
+}
 
 ```
 
@@ -23,7 +49,7 @@ console.log(browser.version);
 
 ### MIT
 
-Copyright (c) 2016 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2017 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

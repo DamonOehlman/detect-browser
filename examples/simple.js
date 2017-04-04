@@ -1,4 +1,7 @@
-var browser = require('..');
+const browser = require('..');
 
-console.log(browser.name);
-console.log(browser.version);
+// handle the case where we don't detect the browser
+if (browser) {
+  console.log(browser.name);
+  console.log(browser.version);
+}
