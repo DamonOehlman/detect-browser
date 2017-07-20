@@ -63,6 +63,11 @@ test('detects IE', function(t) {
   );
 
   assertAgentString(t,
+    'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0; MSN 11.61; MSNbMSNI; MSNmen-us; MSNcOTH) like Gecko',
+    { name: 'ie', version: '11.0.0' }
+  );
+
+  assertAgentString(t,
     'Mozilla/5.0 (compatible; MSIE 10.6; Windows NT 6.1; Trident/5.0; InfoPath.2; SLCC1; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 2.0.50727) 3gpp-gba UNTRUSTED/1.0',
     { name: 'ie', version: '10.6.0' }
   );
