@@ -42,6 +42,20 @@ test('detects Firefox', function(t) {
   t.end();
 });
 
+test('detects Firefox for iOS', function(t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4',
+    { name: 'fxios', version: '1.0.0' }
+  );
+
+  assertAgentString(t,
+    'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
+    { name: 'firefox', version: '40.1.0' }
+  );
+
+  t.end();
+});
+
 test('detects Edge', function(t) {
   assertAgentString(t,
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246',
