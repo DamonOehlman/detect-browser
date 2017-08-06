@@ -49,8 +49,8 @@ test('detects Firefox for iOS', function(t) {
   );
 
   assertAgentString(t,
-    'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
-    { name: 'firefox', version: '40.1.0' }
+    'Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/3.2 Mobile/12F69 Safari/600.1.4',
+    { name: 'fxios', version: '3.2.0' }
   );
 
   t.end();
