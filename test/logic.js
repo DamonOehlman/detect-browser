@@ -163,6 +163,15 @@ test('detects Yandex Browser', function(t) {
     t.end();
 });
 
+test('detects Vivaldi Browser', function(t) {
+    assertAgentString(t,
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36 Vivaldi/1.2.490.43',
+        { name: 'vivaldi', version: '1.2.490' }
+    );
+
+    t.end();
+});
+
 test('handles no browser', function(t) {
     assertAgentString(t,
         null,
