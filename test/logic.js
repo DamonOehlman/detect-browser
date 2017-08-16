@@ -172,6 +172,20 @@ test('detects Vivaldi Browser', function(t) {
     t.end();
 });
 
+test('detects Kakaotalk Browser', function(t) {
+    assertAgentString(t,
+        'Netscape 5.0 (iPhone; CPU iPhone OS 10_3 1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304 KAKAOTALK 6.2.2',
+        { name: 'kakaotalk', version: '6.2.2' }
+    );
+
+    assertAgentString(t,
+        'Mozilla/5.0 (iPhone; CPU iPhone OS  10_3 1 like Mac OS X) AppleWebKit/  603.1.30 (KHTML, like Gecko) Mobile/ 14E304 KAKAOTALK 6.2.2',
+        { name: 'kakaotalk', version: '6.2.2' }
+    );
+
+    t.end();
+});
+
 test('handles no browser', function(t) {
     assertAgentString(t,
         null,
