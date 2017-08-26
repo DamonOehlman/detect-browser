@@ -186,6 +186,16 @@ test('detects Kakaotalk Browser', function(t) {
     t.end();
 });
 
+test('detects PhantomJS Browser', function(t) {
+    assertAgentString(t,
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1',
+        { name: 'phantomjs', version: '2.1.1' }
+    );
+
+    t.end();
+});
+
+
 test('handles no browser', function(t) {
     assertAgentString(t,
         null,
