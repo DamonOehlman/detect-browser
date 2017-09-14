@@ -1,8 +1,8 @@
 var test = require('tape');
-var detectBrowser = require('../parse-user-agent');
+var { parseUserAgent } = require('../');
 
 function assertAgentString(t, agentString, expectedResult) {
-  t.deepEqual(detectBrowser(agentString), expectedResult);
+  t.deepEqual(parseUserAgent(agentString), expectedResult);
 }
 
 test('detects Chrome', function(t) {
