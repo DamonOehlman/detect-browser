@@ -1,3 +1,5 @@
+var parseUserAgent = require('./parse-user-agent');
+
 /**
   # detect-browser
 
@@ -38,5 +40,16 @@
 
 **/
 
-exports.name = 'node';
-exports.version = process.version.slice(1);
+module.exports = function() {
+  var isNode = typeof navigator === 'undefined' && typeof process !== 'undefined';
+  if (isNode) {
+    return {
+      name: 'node',
+      version: process.version.slice(1)
+    };
+  } else if (typeof navigator === 'undefined') {
+    return null;
+  } else {
+    return parseUserAgent(navigator.userAgent);
+  }
+}();
