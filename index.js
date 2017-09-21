@@ -38,7 +38,7 @@
 
 **/
 
-function detectBrowser() {
+function detect() {
   var nodeVersion = getNodeVersion();
   if (nodeVersion) {
     return nodeVersion;
@@ -157,7 +157,7 @@ function buildRules(ruleTuples) {
 }
 
 module.exports = {
-  detect: detectBrowser,
+  detect: detect,
   detectOS: detectOS,
   getNodeVersion: getNodeVersion,
   parseUserAgent: parseUserAgent
