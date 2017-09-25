@@ -5,6 +5,13 @@
   a semver compatible format) using a navigator useragent in a browser or
   `process.version` in node.
 
+  ## NOTE: Version 2.x release
+
+  Release 2.0 introduces a breaking API change (hence the major release)
+  which requires invocation of a `detect` function rather than just inclusion of
+  the module.  PR [#46](https://github.com/DamonOehlman/detect-browser/pull/46)
+  provides more context as to why this change has been made.
+
   ## Example Usage
 
   <<< examples/simple.js

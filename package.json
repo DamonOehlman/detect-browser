@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/DamonOehlman/detect-browser",
   "devDependencies": {
+    "gendocs": "^2.0.0",
     "semver": "^5.0.3",
     "tape": "^4.2.2"
   }
