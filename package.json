@@ -3,7 +3,6 @@
   "version": "1.12.0",
   "description": "Unpack a browser type and version from the useragent string",
   "main": "index.js",
-  "browser": "browser.js",
   "scripts": {
     "test": "node test",
     "prepublish": "npm run test",
@@ -30,6 +29,7 @@
   },
   "homepage": "https://github.com/DamonOehlman/detect-browser",
   "devDependencies": {
+    "gendocs": "^2.0.0",
     "semver": "^5.0.3",
     "tape": "^4.2.2"
   }

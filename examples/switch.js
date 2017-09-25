@@ -1,4 +1,5 @@
-const browser = require('..');
+const { detect } = require('..');
+const browser = detect();
 
 // handle the case where we don't detect the browser
 switch (browser && browser.name) {

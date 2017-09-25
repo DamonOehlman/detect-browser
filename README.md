@@ -10,10 +10,18 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/detect-browser.svg?branch=master)](https://travis-ci.org/DamonOehlman/detect-browser) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/detect-browser/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/detect-browser) 
 
+## NOTE: Version 2.x release
+
+Release 2.0 introduces a breaking API change (hence the major release)
+which requires invocation of a `detect` function rather than just inclusion of
+the module.  PR [#46](https://github.com/DamonOehlman/detect-browser/pull/46)
+provides more context as to why this change has been made.
+
 ## Example Usage
 
 ```js
-const browser = require('detect-browser');
+const { detect } = require('detect-browser');
+const browser = detect();
 
 // handle the case where we don't detect the browser
 if (browser) {
@@ -26,7 +34,8 @@ if (browser) {
 Or you can use a switch statement:
 
 ```js
-const browser = require('detect-browser');
+const { detect } = require('detect-browser');
+const browser = detect();
 
 // handle the case where we don't detect the browser
 switch (browser && browser.name) {
