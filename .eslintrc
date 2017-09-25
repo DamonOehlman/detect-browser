@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "no-var": 0,
+    "spaced-comment": 0,
+    "no-use-before-define": 0,
+    "prefer-arrow-callback": 0,
+    "func-names": 0,
+    "global-require": 0,
+    "object-shorthand": 0
+  }
+}

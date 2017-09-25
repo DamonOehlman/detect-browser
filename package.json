@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test",
+    "eslint": "eslint index.js",
     "prepublish": "npm run test",
     "patch-release": "npm version patch && npm publish && npm run postpublish",
     "minor-release": "npm version minor && npm publish && npm run postpublish",
@@ -30,6 +31,11 @@
   "homepage": "https://github.com/DamonOehlman/detect-browser",
   "devDependencies": {
     "gendocs": "^2.0.0",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "5",
+    "eslint-plugin-react": "^7.3.0",
     "semver": "^5.0.3",
     "tape": "^4.2.2"
   }
