@@ -10,7 +10,7 @@
     "minor-release": "npm version minor && npm publish && npm run postpublish",
     "major-release": "npm version major && npm publish && npm run postpublish",
     "postpublish": "git push origin master --follow-tags",
-    "gendocs": "gendocs > README.md"
+    "gendocs": "embellish README.md"
   },
   "stability": "stable",
   "repository": {
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/DamonOehlman/detect-browser",
   "devDependencies": {
+    "embellish-readme": "^1.2.0",
     "gendocs": "^2.0.0",
     "semver": "^5.0.3",
     "tape": "^4.2.2"
