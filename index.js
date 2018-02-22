@@ -29,7 +29,7 @@
   Creating an acceptable implementation requires two things:
 
   1. A test demonstrating that the regular expression you have defined identifies
-     your new browser correctly.  Examples of this can be found in the 
+     your new browser correctly.  Examples of this can be found in the
      `test/logic.js` file.
 
   2. Write the actual regex to the `lib/detectBrowser.js` file. In most cases adding
@@ -103,6 +103,7 @@ function parseUserAgent(userAgentString) {
 
 function getBrowserRules() {
   return buildRules([
+    [ 'aol', /AOLShield\/([0-9\._]+)/ ],
     [ 'edge', /Edge\/([0-9\._]+)/ ],
     [ 'yandexbrowser', /YaBrowser\/([0-9\._]+)/ ],
     [ 'vivaldi', /Vivaldi\/([0-9\.]+)/ ],
