@@ -195,6 +195,15 @@ test('detects PhantomJS Browser', function(t) {
     t.end();
 });
 
+test('detects AOLShield Browser', function(t) {
+    assertAgentString(t,
+        'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2841.00 Safari/537.36 AOLShield/54.0.2848.0',
+        { name: 'aol', version: '54.0.2848', os: 'Windows 10' }
+    );
+
+    t.end();
+});
+
 
 test('handles no browser', function(t) {
     assertAgentString(t,
