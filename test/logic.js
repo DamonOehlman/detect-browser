@@ -213,6 +213,16 @@ test('detects facebook in-app browser', function (t) {
   t.end();
 });
 
+test('detects instagram in-app browser', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13F69 Instagram 8.4.0 (iPhone7,2; iPhone OS 9_3_2; nb_NO; nb-NO; scale=2.00; 750x1334',
+    { name: 'instagram', version: '8.4.0', os: 'iOS' }
+  );
+
+  t.end();
+});
+
+
 
 test('handles no browser', function(t) {
     assertAgentString(t,

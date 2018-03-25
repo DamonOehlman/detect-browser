@@ -66,7 +66,7 @@ Creating an acceptable implementation requires two things:
    your new browser correctly.  Examples of this can be found in the 
    `test/logic.js` file.
 
-2. Write the actual regex to the `lib/detectBrowser.js` file. In most cases adding
+2. Write the actual regex to the `index.js` file. In most cases adding
    the regex to the list of existing regexes will be suitable (if usage of `detect-brower`
    returns `undefined` for instance), but in some cases you might have to add it before
    an existing regex.  This would be true for a case where you have a browser that
