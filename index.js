@@ -122,7 +122,8 @@ function getBrowserRules() {
     [ 'android', /Android\s([0-9\.]+)/ ],
     [ 'ios', /Version\/([0-9\._]+).*Mobile.*Safari.*/ ],
     [ 'safari', /Version\/([0-9\._]+).*Safari/ ],
-    ['facebook', /FBAV\/([0-9\.]+)/],
+    [ 'facebook', /FBAV\/([0-9\.]+)/],
+    [ 'instagram', /Instagram\ ([0-9\.]+)/]
   ]);
 }
 
