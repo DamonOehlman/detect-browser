@@ -204,6 +204,15 @@ test('detects AOLShield Browser', function(t) {
     t.end();
 });
 
+test('detects facebook in-app browser', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_5 like Mac OS X) AppleWebKit/604.5.6 (KHTML, like Gecko) Mobile/15D60 [FBAN/FBIOS;FBAV/157.0.0.42.96;FBBV/90008621;FBDV/iPhone9,1;FBMD/iPhone;FBSN/iOS;FBSV/11.2.5;FBSS/2;FBCR/Verizon;FBID/phone;FBLC/en_US;FBOP/5;FBRV/0]',
+    { name: 'facebook', version: '157.0.0', os: 'iOS' }
+  );
+
+  t.end();
+});
+
 
 test('handles no browser', function(t) {
     assertAgentString(t,
