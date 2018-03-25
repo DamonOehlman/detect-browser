@@ -121,7 +121,8 @@ function getBrowserRules() {
     [ 'bb10', /BB10;\sTouch.*Version\/([0-9\.]+)/ ],
     [ 'android', /Android\s([0-9\.]+)/ ],
     [ 'ios', /Version\/([0-9\._]+).*Mobile.*Safari.*/ ],
-    [ 'safari', /Version\/([0-9\._]+).*Safari/ ]
+    [ 'safari', /Version\/([0-9\._]+).*Safari/ ],
+    ['facebook', /FBAV\/([0-9\.]+)/],
   ]);
 }
 
