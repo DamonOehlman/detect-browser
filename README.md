@@ -27,8 +27,13 @@ const browser = detect();
 if (browser) {
   console.log(browser.name);
   console.log(browser.version);
+  console.log(browser.os);
 }
 ```
+
+[![view on requirebin](http://requirebin.com/badge.png)](http://requirebin.com/?gist=DamonOehlman/a96b45bc4614b23671eac8721b781deb)
+
+[![Try detect-browser on RunKit](https://badge.runkitcdn.com/detect-browser.svg)](https://runkit.com/damonoehlman/detect-browser-node-example)
 
 Or you can use a switch statement:
 
@@ -60,10 +65,9 @@ then please submit a pull request with the implementation.
 
 Creating an acceptable implementation requires two things:
 
-1. A test demonstrating that the regular expression you have defined identifies
-your new browser correctly. Examples of this can be found in the
-`test/logic.js` file.
-
+1.  A test demonstrating that the regular expression you have defined identifies
+    your new browser correctly. Examples of this can be found in the
+    `test/logic.js` file.
 
 2)  Write the actual regex to the `index.js` file. In most cases adding
     the regex to the list of existing regexes will be suitable (if usage of `detect-brower`
@@ -80,7 +84,7 @@ captures the version number of the browser.
 
 The MIT License (MIT)
 
-Copyright (c) 2018 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2018 Damon Oehlman <mailto:damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -99,5 +103,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
