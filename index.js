@@ -35,7 +35,7 @@ function parseUserAgent(userAgentString) {
 
   var detected = browsers.map(function(browser) {
     var match = browser.rule.exec(userAgentString);
-    var version = match && match[1].split(/[._]/).slice(0,3);
+    var version = match && match[1] && match[1].split(/[._]/).slice(0,3);
 
     if (version && version.length < 3) {
       version = version.concat(version.length == 1 ? [0, 0] : [0]);
@@ -43,7 +43,7 @@ function parseUserAgent(userAgentString) {
 
     return match && {
       name: browser.name,
-      version: version.join('.')
+      version: version && version.join('.') || null
     };
   }).filter(Boolean)[0] || null;
 
@@ -76,12 +76,18 @@ function getBrowserRules() {
     [ 'ios', /Version\/([0-9\._]+).*Mobile.*Safari.*/ ],
     [ 'safari', /Version\/([0-9\._]+).*Safari/ ],
     [ 'facebook', /FBAV\/([0-9\.]+)/],
-    [ 'instagram', /Instagram\ ([0-9\.]+)/]
+    [ 'instagram', /Instagram\ ([0-9\.]+)/],
+    [ 'googlebot', /Googlebot\/([0-9\.]+)/],
+    [ 'bingbot', /bingbot\/([0-9\.]+)/],
+    [ 'slurp', /Slurp/],
+    [ 'ahrefsbot', /AhrefsBot\/([0-9\.]+)/],
+    [ 'undefinedbot', /[Bb]ot\/([0-9\.]+)?/],
   ]);
 }
 
 function getOperatingSystemRules() {
   return buildRules([
+    [ 'Search Bot', /(nuhk)|(Googlebot)|(bingbot)|(AhrefsBot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)/ ],
     [ 'iOS', /iP(hone|od|ad)/ ],
     [ 'Android OS', /Android/ ],
     [ 'BlackBerry OS', /BlackBerry|BB10/ ],
@@ -106,7 +112,7 @@ function getOperatingSystemRules() {
     [ 'QNX', /QNX/ ],
     [ 'BeOS', /BeOS/ ],
     [ 'OS/2', /OS\/2/ ],
-    [ 'Search Bot', /(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)/ ]
+    [ 'Search Bot', /[Bb]ot/ ],
   ]);
 }
 
