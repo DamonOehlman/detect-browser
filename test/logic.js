@@ -222,7 +222,59 @@ test('detects instagram in-app browser', function (t) {
   t.end();
 });
 
+test('detects Googlebot crawler', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36',
+    { name: 'googlebot', version: '2.1.0', os: 'Search Bot' }
+  );
 
+  t.end();
+});
+
+test('detects Bingbot crawler', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)',
+    { name: 'bingbot', version: '2.0.0', os: 'Search Bot' }
+  );
+
+  t.end();
+});
+
+test('detects Yahoo! Slurp crawler', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)',
+    { name: 'slurp', version: null, os: 'Search Bot' }
+  );
+
+  t.end();
+});
+
+test('detects AhrefsBot crawler', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)',
+    { name: 'ahrefsbot', version: '5.2.0', os: 'Search Bot' }
+  );
+
+  t.end();
+});
+
+test('detects undefined bot with lowercase b', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (compatible; Exabot/3.0; +http://www.exabot.com/go/robot)',
+    { name: 'undefinedbot', version: '3.0.0', os: 'Search bot' }
+  );
+
+  t.end();
+});
+
+test('detects undefined bot with uppercase B', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)',
+    { name: 'undefinedbot', version: '3.0.0', os: 'Search bot' }
+  );
+
+  t.end();
+});
 
 test('handles no browser', function(t) {
     assertAgentString(t,
