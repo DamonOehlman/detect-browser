@@ -51,6 +51,11 @@ function parseUserAgent(userAgentString) {
     detected.os = detectOS(userAgentString);
   }
 
+  if (/alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/i.test(userAgentString)) {
+    detected = detected || {};
+    detected.bot = true;
+  }
+  
   return detected;
 }
 

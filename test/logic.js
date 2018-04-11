@@ -222,7 +222,32 @@ test('detects instagram in-app browser', function (t) {
   t.end();
 });
 
+test('detects crawler: AhrefsBot', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)',
+    { bot: true }
+  );
 
+  t.end();
+});
+
+test('detects crawler: GoogleBot', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36',
+    { bot: true }
+  );
+
+  t.end();
+});
+
+test('detects crawler: YandexBot', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)',
+    { bot: true }
+  );
+
+  t.end();
+});
 
 test('handles no browser', function(t) {
     assertAgentString(t,
