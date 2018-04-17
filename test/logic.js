@@ -222,6 +222,15 @@ test('detects instagram in-app browser', function (t) {
   t.end();
 });
 
+test('detects Samsung Internet browser', function(t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36',
+    { name: 'samsung', version: '4.0.0', os: 'Android OS' }
+  );
+
+  t.end();
+});
+
 test('detects crawler: AhrefsBot', function (t) {
   assertAgentString(t,
     'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)',

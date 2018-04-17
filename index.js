@@ -66,6 +66,7 @@ function getBrowserRules() {
     [ 'yandexbrowser', /YaBrowser\/([0-9\._]+)/ ],
     [ 'vivaldi', /Vivaldi\/([0-9\.]+)/ ],
     [ 'kakaotalk', /KAKAOTALK\s([0-9\.]+)/ ],
+    [ 'samsung', /SamsungBrowser\/([0-9\.]+)/ ],
     [ 'chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/ ],
     [ 'phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/ ],
     [ 'crios', /CriOS\/([0-9\.]+)(:?\s|$)/ ],
