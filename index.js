@@ -1,12 +1,9 @@
 function detect() {
-  var nodeVersion = getNodeVersion();
-  if (nodeVersion) {
-    return nodeVersion;
-  } else if (typeof navigator !== 'undefined') {
+  if (typeof navigator !== 'undefined') {
     return parseUserAgent(navigator.userAgent);
   }
 
-  return null;
+  return getNodeVersion();
 }
 
 function detectOS(userAgentString) {
@@ -19,12 +16,12 @@ function detectOS(userAgentString) {
 }
 
 function getNodeVersion() {
-  var isNode = typeof navigator === 'undefined' && typeof process !== 'undefined';
-  return isNode ? {
+  var isNode = typeof process !== 'undefined' && process.version;
+  return isNode && {
     name: 'node',
     version: process.version.slice(1),
-    os: require('os').type().toLowerCase()
-  } : null;
+    os: process.platform
+  };
 }
 
 function parseUserAgent(userAgentString) {
