@@ -6,9 +6,7 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![NPM](https://nodei.co/npm/detect-browser.png)](https://nodei.co/npm/detect-browser/)
 
-[![Build Status](https://api.travis-ci.org/DamonOehlman/detect-browser.svg?branch=master)](https://travis-ci.org/DamonOehlman/detect-browser)
-
-[![bitHound Score](https://www.bithound.io/github/DamonOehlman/detect-browser/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/detect-browser)
+[![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/detect-browser.svg?branch=master)](https://travis-ci.org/DamonOehlman/detect-browser)
 
 ## NOTE: Version 2.x release
 
@@ -65,9 +63,10 @@ then please submit a pull request with the implementation.
 
 Creating an acceptable implementation requires two things:
 
-1.  A test demonstrating that the regular expression you have defined identifies
-    your new browser correctly. Examples of this can be found in the
-    `test/logic.js` file.
+1. A test demonstrating that the regular expression you have defined identifies
+your new browser correctly. Examples of this can be found in the
+`test/logic.js` file.
+
 
 2)  Write the actual regex to the `index.js` file. In most cases adding
     the regex to the list of existing regexes will be suitable (if usage of `detect-brower`
@@ -84,7 +83,7 @@ captures the version number of the browser.
 
 The MIT License (MIT)
 
-Copyright (c) 2018 Damon Oehlman <mailto:damon.oehlman@gmail.com>
+Copyright (c) 2018 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -103,3 +102,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
