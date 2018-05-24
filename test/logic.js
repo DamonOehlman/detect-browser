@@ -222,6 +222,15 @@ test('detects instagram in-app browser', function (t) {
   t.end();
 });
 
+test('detects native iOS WebView browser', function (t) {
+  assertAgentString(t,
+    'User-Agent: Mozilla/5.0 (iPad; U; CPU OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile',
+    { name: 'ios-webview', version: '533.17.9', os: 'iOS' }
+  );
+
+  t.end();
+});
+
 test('detects Samsung Internet browser', function(t) {
   assertAgentString(t,
     'Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36',
