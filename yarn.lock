@@ -42,9 +42,9 @@ defined@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
 
-embellish-readme@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/embellish-readme/-/embellish-readme-1.3.1.tgz#f95bbebd64d1a404c04d9b4dc8ceee65ea1f1ec0"
+embellish-readme@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/embellish-readme/-/embellish-readme-1.3.2.tgz#72b52aa1f4a8407c316c3c9f0f1bd66c320754a6"
   dependencies:
     debug "^3.1.0"
     formatter "^0.4.1"
