@@ -20,7 +20,10 @@ function getNodeVersion() {
   return isNode && {
     name: 'node',
     version: process.version.slice(1),
-    os: process.platform
+    os: process.platform,
+    isVariant: function() {
+      return false;
+    }
   };
 }
 
@@ -46,6 +49,7 @@ function parseUserAgent(userAgentString) {
 
   if (detected) {
     detected.os = detectOS(userAgentString);
+    detected.isVariant = lookFor(userAgentString, ['('], [';'])
   }
 
   if (/alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/i.test(userAgentString)) {
@@ -121,6 +125,13 @@ function buildRules(ruleTuples) {
       rule: tuple[1]
     };
   });
+}
+
+function lookFor(userAgentString, leadingTokens, trailingTokens) {
+  return function(searchString) {
+    var fullSearchString = leadingTokens.concat([searchString || '']).concat(trailingTokens).join('').toLowerCase();
+    return userAgentString.toLowerCase().indexOf(fullSearchString) >= 0;
+  }
 }
 
 module.exports = {

@@ -2,7 +2,11 @@ var test = require('tape');
 var { parseUserAgent } = require('../');
 
 function assertAgentString(t, agentString, expectedResult) {
-  t.deepEqual(parseUserAgent(agentString), expectedResult);
+  const detected = parseUserAgent(agentString);
+  if (detected) {
+    delete detected.isVariant;
+  }
+  t.deepEqual(detected, expectedResult);
 }
 
 test('detects Chrome', function(t) {
