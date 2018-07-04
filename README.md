@@ -8,9 +8,9 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/detect-browser.svg?branch=master)](https://travis-ci.org/DamonOehlman/detect-browser) [![Maintainability](https://api.codeclimate.com/v1/badges/84947fce3f3b06da69d0/maintainability)](https://codeclimate.com/github/DamonOehlman/detect-browser/maintainability)
 
-## NOTE: Version 2.x release
+## NOTE: Migrating from 1.x to 2.x or higher
 
-Release 2.0 introduces a breaking API change (hence the major release)
+Release 2.0 introduced a breaking API change (hence the major release)
 which requires invocation of a `detect` function rather than just inclusion of
 the module. PR [#46](https://github.com/DamonOehlman/detect-browser/pull/46)
 provides more context as to why this change has been made.
