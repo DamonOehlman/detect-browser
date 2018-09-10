@@ -79,7 +79,7 @@ function getBrowserRules() {
     [ 'ios', /Version\/([0-9\._]+).*Mobile.*Safari.*/ ],
     [ 'safari', /Version\/([0-9\._]+).*Safari/ ],
     [ 'facebook', /FBAV\/([0-9\.]+)/],
-    [ 'instagram', /Instagram\ ([0-9\.]+)/],
+    [ 'instagram', /Instagram\s([0-9\.]+)/],
     [ 'ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/]
   ]);
 }
