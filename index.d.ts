@@ -1,7 +1,8 @@
 export interface BrowserVersion {
-    name: string
-    version: string
-    os: string
+    name?: string
+    version?: string
+    os?: string
+    bot?: boolean
 }
 
 export function parseUserAgent(userAgentString: string): BrowserVersion | null;
