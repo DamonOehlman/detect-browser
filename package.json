@@ -5,7 +5,8 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "pretest": "tsc",
+    "build": "tsc",
+    "pretest": "npm run build",
     "test": "node test",
     "prepublish": "npm run test",
     "patch-release": "npm version patch && npm publish && npm run postpublish",
