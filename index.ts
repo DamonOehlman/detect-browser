@@ -1,4 +1,13 @@
-function detect() {
+interface Version {
+  name?: string
+  version?: string
+  os?: string
+  bot?: boolean
+};
+
+type Nullable<T> = T | null;
+
+export function detect() {
   if (typeof navigator !== 'undefined') {
     return parseUserAgent(navigator.userAgent);
   }
@@ -6,41 +15,44 @@ function detect() {
   return getNodeVersion();
 }
 
-function detectOS(userAgentString) {
+export function detectOS(userAgentString: string): string | undefined {
   var rules = getOperatingSystemRules();
   var detected = rules.filter(function (os) {
     return os.rule && os.rule.test(userAgentString);
   })[0];
 
-  return detected ? detected.name : null;
+  return detected ? detected.name : undefined;
 }
 
-function getNodeVersion() {
+export function getNodeVersion(): Nullable<Version> {
   var isNode = typeof process !== 'undefined' && process.version;
-  return isNode && {
+  if (!isNode) {
+    return null;
+  }
+  return {
     name: 'node',
     version: process.version.slice(1),
     os: process.platform
   };
 }
 
-function parseUserAgent(userAgentString) {
+export function parseUserAgent(userAgentString: string): Nullable<Version> {
   var browsers = getBrowserRules();
   if (!userAgentString) {
     return null;
   }
 
-  var detected = browsers.map(function(browser) {
+  var detected: Nullable<Version> = browsers.map(function(browser) {
     var match = browser.rule.exec(userAgentString);
-    var version = match && match[1].split(/[._]/).slice(0,3);
+    var version = match ? match[1].split(/[._]/).slice(0,3) : undefined;
 
-    if (version && version.length < 3) {
-      version = version.concat(version.length == 1 ? [0, 0] : [0]);
+    while (version && version.length < 3) {
+      version.push('0')
     }
 
     return match && {
       name: browser.name,
-      version: version.join('.')
+      version: version && version.join('.'),
     };
   }).filter(Boolean)[0] || null;
 
@@ -114,7 +126,7 @@ function getOperatingSystemRules() {
   ]);
 }
 
-function buildRules(ruleTuples) {
+function buildRules(ruleTuples: [string, RegExp][]) {
   return ruleTuples.map(function(tuple) {
     return {
       name: tuple[0],
@@ -122,10 +134,3 @@ function buildRules(ruleTuples) {
     };
   });
 }
-
-module.exports = {
-  detect: detect,
-  detectOS: detectOS,
-  getNodeVersion: getNodeVersion,
-  parseUserAgent: parseUserAgent
-};
