@@ -1,4 +1,4 @@
-interface Version {
+export interface Version {
   name?: string
   version?: string
   os?: string
