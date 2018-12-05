@@ -82,7 +82,7 @@ const userAgentRules: UserAgentRule[] = [
   ['facebook', /FBAV\/([0-9\.]+)/],
   ['instagram', /Instagram\s([0-9\.]+)/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
-  ['searchbot', SEARCHBOX_UA_REGEX],
+  ['searchbot', SEARCHBOX_UA_REGEX]
 ];
 const operatingSystemRules: OperatingSystemRule[] = [
   ['iOS', /iP(hone|od|ad)/],
@@ -147,7 +147,12 @@ function getMatchedBrowser(ua: string): BrowserInfo | null {
     version = version.concat(version.length == 1 ? [0, 0] : [0]);
   }
 
-  return { browser, version, os: getMatchedOperatingSystem(ua), bot: browser === 'searchbot' };
+  return {
+    browser,
+    version,
+    os: getMatchedOperatingSystem(ua),
+    bot: browser === 'searchbot'
+  };
 }
 
 function getMatchedOperatingSystem(ua): OperatingSystem | null {
