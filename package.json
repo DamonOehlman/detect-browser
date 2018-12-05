@@ -31,6 +31,8 @@
   "devDependencies": {
     "embellish-readme": "1.3.2",
     "semver": "^5.0.3",
-    "tape": "^4.2.2"
+    "tape": "^4.2.2",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.1"
   }
 }
