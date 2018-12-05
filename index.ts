@@ -112,12 +112,6 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['Search Bot', SEARCHBOT_OS_REGEX]
 ];
 
-export function parseUserAgent(ua: string) {
-  if (!ua) {
-    return null;
-  }
-}
-
 export function detect(): BrowserInfo | null {
   if (typeof navigator !== undefined) {
     return getMatchedBrowser(navigator.userAgent);
