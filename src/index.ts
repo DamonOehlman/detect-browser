@@ -1,8 +1,17 @@
 interface BrowserInfo {
-  browser: Browser;
+  name: Browser;
   version: string;
-  os?: OperatingSystem;
-  bot: boolean;
+  os: OperatingSystem | null;
+}
+
+interface NodeInfo {
+  name: 'node',
+  version: string,
+  os: NodeJS.Platform
+};
+
+interface BotBrowserInfo {
+  bot: true;
 }
 
 type Browser =
@@ -54,10 +63,13 @@ type OperatingSystem =
   | 'OS/2'
   | 'Search Bot';
 type UserAgentRule = [Browser, RegExp];
+type UserAgentMatch = [Browser, RegExpExecArray] | false;
 type OperatingSystemRule = [OperatingSystem, RegExp];
 
 const SEARCHBOX_UA_REGEX = /alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/;
 const SEARCHBOT_OS_REGEX = /(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)/;
+const REQUIRED_VERSION_PARTS = 3;
+
 const userAgentRules: UserAgentRule[] = [
   ['aol', /AOLShield\/([0-9\._]+)/],
   ['edge', /Edge\/([0-9\._]+)/],
@@ -112,50 +124,68 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['Search Bot', SEARCHBOT_OS_REGEX]
 ];
 
-export function detect(): BrowserInfo | null {
-  if (typeof navigator !== undefined) {
-    return getMatchedBrowser(navigator.userAgent);
+export function detect(): BrowserInfo | BotBrowserInfo | NodeInfo | null {
+  if (typeof navigator !== 'undefined') {
+    return parseUserAgent(navigator.userAgent);
   }
 
-  // TODO: do we still do node detection?
-  return null;
+  return getNodeVersion();
 }
 
-function getMatchedBrowser(ua: string): BrowserInfo | null {
+export function parseUserAgent(ua: string): BrowserInfo | BotBrowserInfo | null {
   // opted for using reduce here rather than Array#first with a regex.test call
   // this is primarily because using the reduce we only perform the regex
   // execution once rather than once for the test and for the exec again below
   // probably something that needs to be benchmarked though
-  const matchedRule =
-    ua &&
-    userAgentRules.reduce((matched, [browser, regex]) => {
+  const matchedRule: UserAgentMatch =
+    ua !== '' &&
+    userAgentRules.reduce<UserAgentMatch>((matched: UserAgentMatch, [browser, regex]) => {
       if (matched) {
         return matched;
       }
 
       const match = regex.exec(ua);
-      return match && [browser, match];
-    }, null);
+      return !!match && [browser, match];
+    }, false);
 
   if (!matchedRule) {
     return null;
   }
 
-  const [browser, match] = matchedRule;
-  let version = match[1].split(/[._]/).slice(0, 3);
-  if (version.length < 3) {
-    version = version.concat(version.length == 1 ? [0, 0] : [0]);
+  const [name, match] = matchedRule;
+  if (name === 'searchbot') {
+    return { bot: true };
+  }
+
+  let version = match[1] && match[1].split(/[._]/).slice(0, 3);
+  if (version) {
+    if (version.length < REQUIRED_VERSION_PARTS) {
+      version = [
+        ...version,
+        ...new Array(REQUIRED_VERSION_PARTS - version.length).fill('0'),
+      ];
+    }
+  } else {
+    version = [];
   }
 
   return {
-    browser,
-    version,
-    os: getMatchedOperatingSystem(ua),
-    bot: browser === 'searchbot'
+    name,
+    version: version.join('.'),
+    os: detectOS(ua)
   };
 }
 
-function getMatchedOperatingSystem(ua): OperatingSystem | null {
+export function detectOS(ua: string): OperatingSystem | null {
   const match = operatingSystemRules.find(([_, regex]) => regex.test(ua));
   return match ? match[0] : null;
+}
+
+export function getNodeVersion(): NodeInfo | null {
+  const isNode = typeof process !== 'undefined' && process.version;
+  return isNode ? {
+    name: 'node',
+    version: process.version.slice(1),
+    os: process.platform
+  } : null;
 }
