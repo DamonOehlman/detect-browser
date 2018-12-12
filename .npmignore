@@ -1,8 +1,5 @@
-# examples
 examples
-
-# unit tests
 test
-
-# build info
 .travis.yml
+.prettierrc
+src
