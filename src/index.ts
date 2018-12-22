@@ -10,7 +10,9 @@ interface BrowserInfo extends BaseInfo<Browser, OperatingSystem | null, string> 
 interface NodeInfo extends BaseInfo<'node', NodeJS.Platform, string> {
 }
 
-interface BotInfo extends BaseInfo<'bot'> {}
+interface BotInfo extends BaseInfo<'bot'> {
+  bot: true;
+}
 
 type Browser =
   | 'aol'
@@ -154,6 +156,7 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
   const [name, match] = matchedRule;
   if (name === 'searchbot') {
     return {
+      bot: true,
       name: 'bot',
       os: null,
       version: null,
