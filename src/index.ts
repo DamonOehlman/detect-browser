@@ -5,7 +5,10 @@ interface DetectedInfo<N extends string, O, V = null> {
 }
 
 export class BrowserInfo implements DetectedInfo<Browser, OperatingSystem | null, string> {
-  constructor(public readonly name: Browser, public readonly version: string, public readonly os: OperatingSystem | null) {
+  constructor(
+    public readonly name: Browser,
+    public readonly version: string,
+    public readonly os: OperatingSystem | null) {
   }
 }
 
@@ -76,6 +79,7 @@ type UserAgentRule = [Browser, RegExp];
 type UserAgentMatch = [Browser, RegExpExecArray] | false;
 type OperatingSystemRule = [OperatingSystem, RegExp];
 
+// tslint:disable-next-line:max-line-length
 const SEARCHBOX_UA_REGEX = /alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/;
 const SEARCHBOT_OS_REGEX = /(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)/;
 const REQUIRED_VERSION_PARTS = 3;
@@ -104,7 +108,7 @@ const userAgentRules: UserAgentRule[] = [
   ['facebook', /FBAV\/([0-9\.]+)/],
   ['instagram', /Instagram\s([0-9\.]+)/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
-  ['searchbot', SEARCHBOX_UA_REGEX]
+  ['searchbot', SEARCHBOX_UA_REGEX],
 ];
 const operatingSystemRules: OperatingSystemRule[] = [
   ['iOS', /iP(hone|od|ad)/],
@@ -131,7 +135,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['QNX', /QNX/],
   ['BeOS', /BeOS/],
   ['OS/2', /OS\/2/],
-  ['Search Bot', SEARCHBOT_OS_REGEX]
+  ['Search Bot', SEARCHBOT_OS_REGEX],
 ];
 
 export function detect(): BrowserInfo | BotInfo | NodeInfo | null {
@@ -154,8 +158,8 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
         return matched;
       }
 
-      const match = regex.exec(ua);
-      return !!match && [browser, match];
+      const uaMatch = regex.exec(ua);
+      return !!uaMatch && [browser, uaMatch];
     }, false);
 
   if (!matchedRule) {

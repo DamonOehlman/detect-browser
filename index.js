@@ -37,6 +37,7 @@
         return BotInfo;
     }());
     exports.BotInfo = BotInfo;
+    // tslint:disable-next-line:max-line-length
     var SEARCHBOX_UA_REGEX = /alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/;
     var SEARCHBOT_OS_REGEX = /(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)/;
     var REQUIRED_VERSION_PARTS = 3;
@@ -64,7 +65,7 @@
         ['facebook', /FBAV\/([0-9\.]+)/],
         ['instagram', /Instagram\s([0-9\.]+)/],
         ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
-        ['searchbot', SEARCHBOX_UA_REGEX]
+        ['searchbot', SEARCHBOX_UA_REGEX],
     ];
     var operatingSystemRules = [
         ['iOS', /iP(hone|od|ad)/],
@@ -91,7 +92,7 @@
         ['QNX', /QNX/],
         ['BeOS', /BeOS/],
         ['OS/2', /OS\/2/],
-        ['Search Bot', SEARCHBOT_OS_REGEX]
+        ['Search Bot', SEARCHBOT_OS_REGEX],
     ];
     function detect() {
         if (typeof navigator !== 'undefined') {
@@ -111,8 +112,8 @@
                 if (matched) {
                     return matched;
                 }
-                var match = regex.exec(ua);
-                return !!match && [browser, match];
+                var uaMatch = regex.exec(ua);
+                return !!uaMatch && [browser, uaMatch];
             }, false);
         if (!matchedRule) {
             return null;

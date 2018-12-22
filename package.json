@@ -7,7 +7,7 @@
     "pretest": "tsc",
     "test": "node test",
     "lint": "tslint -c tslint.json src/**",
-    "compile-and-size": "yarn tsc && cat index.js | wc -c",
+    "compile-and-size": "yarn tsc && cat index.js | gzip | wc -c",
     "prepublish": "npm run test && npm run lint",
     "patch-release": "npm version patch && npm publish && npm run postpublish",
     "minor-release": "npm version minor && npm publish && npm run postpublish",
