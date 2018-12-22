@@ -1,17 +1,27 @@
-interface BrowserInfo {
-  name: Browser;
-  version: string;
-  os: OperatingSystem | null;
+interface DetectedInfo<N extends string, O, V = null> {
+  name: N;
+  version: V;
+  os: O;
 }
 
-interface NodeInfo {
-  name: 'node',
-  version: string,
-  os: NodeJS.Platform
-};
+export class BrowserInfo implements DetectedInfo<Browser, OperatingSystem | null, string> {
+  constructor(public readonly name: Browser, public readonly version: string, public readonly os: OperatingSystem | null) {
+  }
+}
 
-interface BotBrowserInfo {
-  bot: true;
+export class NodeInfo implements DetectedInfo<'node', NodeJS.Platform, string> {
+  public readonly name: 'node' = 'node';
+  public readonly os: NodeJS.Platform = process.platform;
+
+  constructor( public readonly version: string) {
+  }
+}
+
+export class BotInfo implements DetectedInfo<'bot', null, null> {
+  public readonly bot: true = true;
+  public readonly name: 'bot' = 'bot';
+  public readonly version: null = null;
+  public readonly os: null = null;
 }
 
 type Browser =
@@ -124,7 +134,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['Search Bot', SEARCHBOT_OS_REGEX]
 ];
 
-export function detect(): BrowserInfo | BotBrowserInfo | NodeInfo | null {
+export function detect(): BrowserInfo | BotInfo | NodeInfo | null {
   if (typeof navigator !== 'undefined') {
     return parseUserAgent(navigator.userAgent);
   }
@@ -132,7 +142,7 @@ export function detect(): BrowserInfo | BotBrowserInfo | NodeInfo | null {
   return getNodeVersion();
 }
 
-export function parseUserAgent(ua: string): BrowserInfo | BotBrowserInfo | null {
+export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
   // opted for using reduce here rather than Array#first with a regex.test call
   // this is primarily because using the reduce we only perform the regex
   // execution once rather than once for the test and for the exec again below
@@ -154,7 +164,7 @@ export function parseUserAgent(ua: string): BrowserInfo | BotBrowserInfo | null 
 
   const [name, match] = matchedRule;
   if (name === 'searchbot') {
-    return { bot: true };
+    return new BotInfo();
   }
 
   let version = match[1] && match[1].split(/[._]/).slice(0, 3);
@@ -169,11 +179,7 @@ export function parseUserAgent(ua: string): BrowserInfo | BotBrowserInfo | null 
     version = [];
   }
 
-  return {
-    name,
-    version: version.join('.'),
-    os: detectOS(ua)
-  };
+  return new BrowserInfo(name, version.join('.'), detectOS(ua));
 }
 
 export function detectOS(ua: string): OperatingSystem | null {
@@ -183,9 +189,5 @@ export function detectOS(ua: string): OperatingSystem | null {
 
 export function getNodeVersion(): NodeInfo | null {
   const isNode = typeof process !== 'undefined' && process.version;
-  return isNode ? {
-    name: 'node',
-    version: process.version.slice(1),
-    os: process.platform
-  } : null;
+  return isNode ? new NodeInfo(process.version.slice(1)) : null;
 }

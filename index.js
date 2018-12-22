@@ -9,7 +9,34 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    ;
+    var BrowserInfo = /** @class */ (function () {
+        function BrowserInfo(name, version, os) {
+            this.name = name;
+            this.version = version;
+            this.os = os;
+        }
+        return BrowserInfo;
+    }());
+    exports.BrowserInfo = BrowserInfo;
+    var NodeInfo = /** @class */ (function () {
+        function NodeInfo(version) {
+            this.version = version;
+            this.name = 'node';
+            this.os = process.platform;
+        }
+        return NodeInfo;
+    }());
+    exports.NodeInfo = NodeInfo;
+    var BotInfo = /** @class */ (function () {
+        function BotInfo() {
+            this.bot = true;
+            this.name = 'bot';
+            this.version = null;
+            this.os = null;
+        }
+        return BotInfo;
+    }());
+    exports.BotInfo = BotInfo;
     var SEARCHBOX_UA_REGEX = /alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/;
     var SEARCHBOT_OS_REGEX = /(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)/;
     var REQUIRED_VERSION_PARTS = 3;
@@ -92,7 +119,7 @@
         }
         var name = matchedRule[0], match = matchedRule[1];
         if (name === 'searchbot') {
-            return { bot: true };
+            return new BotInfo();
         }
         var version = match[1] && match[1].split(/[._]/).slice(0, 3);
         if (version) {
@@ -103,11 +130,7 @@
         else {
             version = [];
         }
-        return {
-            name: name,
-            version: version.join('.'),
-            os: detectOS(ua)
-        };
+        return new BrowserInfo(name, version.join('.'), detectOS(ua));
     }
     exports.parseUserAgent = parseUserAgent;
     function detectOS(ua) {
@@ -120,11 +143,7 @@
     exports.detectOS = detectOS;
     function getNodeVersion() {
         var isNode = typeof process !== 'undefined' && process.version;
-        return isNode ? {
-            name: 'node',
-            version: process.version.slice(1),
-            os: process.platform
-        } : null;
+        return isNode ? new NodeInfo(process.version.slice(1)) : null;
     }
     exports.getNodeVersion = getNodeVersion;
 });
