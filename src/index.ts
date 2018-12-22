@@ -1,18 +1,16 @@
-interface BrowserInfo {
-  name: Browser;
-  version: string;
-  os: OperatingSystem | null;
+interface BaseInfo<N extends string, O = null, V = null> {
+  name: N;
+  os: O;
+  version: V;
 }
 
-interface NodeInfo {
-  name: 'node',
-  version: string,
-  os: NodeJS.Platform
-};
-
-interface BotBrowserInfo {
-  bot: true;
+interface BrowserInfo extends BaseInfo<Browser, OperatingSystem | null, string> {
 }
+
+interface NodeInfo extends BaseInfo<'node', NodeJS.Platform, string> {
+}
+
+interface BotInfo extends BaseInfo<'bot'> {}
 
 type Browser =
   | 'aol'
@@ -66,6 +64,7 @@ type UserAgentRule = [Browser, RegExp];
 type UserAgentMatch = [Browser, RegExpExecArray] | false;
 type OperatingSystemRule = [OperatingSystem, RegExp];
 
+// tslint:disable-next-line:max-line-length
 const SEARCHBOX_UA_REGEX = /alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/;
 const SEARCHBOT_OS_REGEX = /(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)/;
 const REQUIRED_VERSION_PARTS = 3;
@@ -94,7 +93,7 @@ const userAgentRules: UserAgentRule[] = [
   ['facebook', /FBAV\/([0-9\.]+)/],
   ['instagram', /Instagram\s([0-9\.]+)/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
-  ['searchbot', SEARCHBOX_UA_REGEX]
+  ['searchbot', SEARCHBOX_UA_REGEX],
 ];
 const operatingSystemRules: OperatingSystemRule[] = [
   ['iOS', /iP(hone|od|ad)/],
@@ -121,10 +120,10 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['QNX', /QNX/],
   ['BeOS', /BeOS/],
   ['OS/2', /OS\/2/],
-  ['Search Bot', SEARCHBOT_OS_REGEX]
+  ['Search Bot', SEARCHBOT_OS_REGEX],
 ];
 
-export function detect(): BrowserInfo | BotBrowserInfo | NodeInfo | null {
+export function detect(): BrowserInfo | BotInfo | NodeInfo | null {
   if (typeof navigator !== 'undefined') {
     return parseUserAgent(navigator.userAgent);
   }
@@ -132,7 +131,7 @@ export function detect(): BrowserInfo | BotBrowserInfo | NodeInfo | null {
   return getNodeVersion();
 }
 
-export function parseUserAgent(ua: string): BrowserInfo | BotBrowserInfo | null {
+export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
   // opted for using reduce here rather than Array#first with a regex.test call
   // this is primarily because using the reduce we only perform the regex
   // execution once rather than once for the test and for the exec again below
@@ -144,8 +143,8 @@ export function parseUserAgent(ua: string): BrowserInfo | BotBrowserInfo | null 
         return matched;
       }
 
-      const match = regex.exec(ua);
-      return !!match && [browser, match];
+      const uaMatch = regex.exec(ua);
+      return !!uaMatch && [browser, uaMatch];
     }, false);
 
   if (!matchedRule) {
@@ -154,7 +153,11 @@ export function parseUserAgent(ua: string): BrowserInfo | BotBrowserInfo | null 
 
   const [name, match] = matchedRule;
   if (name === 'searchbot') {
-    return { bot: true };
+    return {
+      name: 'bot',
+      os: null,
+      version: null,
+    };
   }
 
   let version = match[1] && match[1].split(/[._]/).slice(0, 3);
@@ -171,8 +174,8 @@ export function parseUserAgent(ua: string): BrowserInfo | BotBrowserInfo | null 
 
   return {
     name,
+    os: detectOS(ua),
     version: version.join('.'),
-    os: detectOS(ua)
   };
 }
 
@@ -185,7 +188,7 @@ export function getNodeVersion(): NodeInfo | null {
   const isNode = typeof process !== 'undefined' && process.version;
   return isNode ? {
     name: 'node',
+    os: process.platform,
     version: process.version.slice(1),
-    os: process.platform
   } : null;
 }
