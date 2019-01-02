@@ -52,7 +52,12 @@ function parseUserAgent(userAgentString) {
     detected = detected || {};
     detected.bot = true;
   }
-
+  
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(userAgentString)) {
+    detected = detected || {};
+    detected.mobile = true;
+  }
+  
   return detected;
 }
 
