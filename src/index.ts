@@ -1,7 +1,7 @@
 interface DetectedInfo<N extends string, O, V = null> {
-  name: N;
-  version: V;
-  os: O;
+  readonly name: N;
+  readonly version: V;
+  readonly os: O;
 }
 
 export class BrowserInfo implements DetectedInfo<Browser, OperatingSystem | null, string> {
@@ -21,7 +21,7 @@ export class NodeInfo implements DetectedInfo<'node', NodeJS.Platform, string> {
 }
 
 export class BotInfo implements DetectedInfo<'bot', null, null> {
-  public readonly bot: true = true;
+  public readonly bot: true = true; // NOTE: deprecated test name instead
   public readonly name: 'bot' = 'bot';
   public readonly version: null = null;
   public readonly os: null = null;

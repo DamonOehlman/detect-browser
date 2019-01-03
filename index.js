@@ -29,7 +29,7 @@
     exports.NodeInfo = NodeInfo;
     var BotInfo = /** @class */ (function () {
         function BotInfo() {
-            this.bot = true;
+            this.bot = true; // NOTE: deprecated test name instead
             this.name = 'bot';
             this.version = null;
             this.os = null;

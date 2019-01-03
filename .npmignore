@@ -3,3 +3,5 @@ test
 .travis.yml
 .prettierrc
 src
+!index.js
+!index.d.ts
