@@ -8,13 +8,6 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/detect-browser.svg?branch=master)](https://travis-ci.org/DamonOehlman/detect-browser) [![Maintainability](https://api.codeclimate.com/v1/badges/84947fce3f3b06da69d0/maintainability)](https://codeclimate.com/github/DamonOehlman/detect-browser/maintainability)
 
-## NOTE: Migrating from 1.x to 2.x or higher
-
-Release 2.0 introduced a breaking API change (hence the major release)
-which requires invocation of a `detect` function rather than just inclusion of
-the module. PR [#46](https://github.com/DamonOehlman/detect-browser/pull/46)
-provides more context as to why this change has been made.
-
 ## Example Usage
 
 ```js
@@ -28,10 +21,6 @@ if (browser) {
   console.log(browser.os);
 }
 ```
-
-[![view on requirebin](http://requirebin.com/badge.png)](http://requirebin.com/?gist=DamonOehlman/a96b45bc4614b23671eac8721b781deb)
-
-[![Try detect-browser on RunKit](https://badge.runkitcdn.com/detect-browser.svg)](https://runkit.com/damonoehlman/detect-browser-node-example)
 
 Or you can use a switch statement:
 
@@ -54,6 +43,20 @@ switch (browser && browser.name) {
     console.log('not supported');
 }
 ```
+
+## NOTE: Upgrading to 4.x
+
+If you have been using `3.x` the main thing to be aware of is that the `bot` boolean flag
+has been removed from all but the `BotInfo` results (yes, `4.x` introduces some
+lightweight classes for identifying the type of result you have received).
+
+In all but a few cases this change will be transparent to most users (given common JS
+coding pattern), but it's worth checking the [release](/releases/tag/v4.0.0)
+notes to get details on those edge cases.
+
+Additionally, with the source now being written in TypeScript the package
+ships with type declarations so you shouldn't need the `@types/detect-browser`
+package anymore (thanks to those that put the effort into creating it though).
 
 ## Adding additional browser support
 
@@ -83,7 +86,7 @@ captures the version number of the browser.
 
 The MIT License (MIT)
 
-Copyright (c) 2018 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2019 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
