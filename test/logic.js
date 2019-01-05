@@ -248,7 +248,7 @@ test('detects Samsung Internet browser', function(t) {
 test('detects crawler: AhrefsBot', function (t) {
   assertAgentString(t,
     'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)',
-    { bot: true }
+    { bot: true, name: 'bot', version: null, os: null }
   );
 
   t.end();
@@ -257,7 +257,7 @@ test('detects crawler: AhrefsBot', function (t) {
 test('detects crawler: GoogleBot', function (t) {
   assertAgentString(t,
     'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36',
-    { bot: true }
+    { bot: true, name: 'bot', version: null, os: null }
   );
 
   t.end();
@@ -266,7 +266,7 @@ test('detects crawler: GoogleBot', function (t) {
 test('detects crawler: YandexBot', function (t) {
   assertAgentString(t,
     'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)',
-    { bot: true }
+    { bot: true, name: 'bot', version: null, os: null }
   );
 
   t.end();

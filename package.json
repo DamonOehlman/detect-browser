@@ -4,8 +4,11 @@
   "description": "Unpack a browser type and version from the useragent string",
   "main": "index.js",
   "scripts": {
+    "pretest": "tsc",
     "test": "node test",
-    "prepublish": "npm run test",
+    "lint": "tslint -c tslint.json src/**",
+    "compile-and-size": "yarn tsc && cat index.js | gzip | wc -c",
+    "prepare": "npm run test && npm run lint",
     "patch-release": "npm version patch && npm publish && npm run postpublish",
     "minor-release": "npm version minor && npm publish && npm run postpublish",
     "major-release": "npm version major && npm publish && npm run postpublish",
@@ -29,8 +32,11 @@
   },
   "homepage": "https://github.com/DamonOehlman/detect-browser",
   "devDependencies": {
+    "@types/node": "^10.12.12",
     "embellish-readme": "1.3.2",
     "semver": "^5.0.3",
-    "tape": "^4.2.2"
+    "tape": "^4.2.2",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.1"
   }
 }
