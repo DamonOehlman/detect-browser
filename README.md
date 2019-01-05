@@ -51,7 +51,7 @@ has been removed from all but the `BotInfo` results (yes, `4.x` introduces some
 lightweight classes for identifying the type of result you have received).
 
 In all but a few cases this change will be transparent to most users (given common JS
-coding pattern), but it's worth checking the [release](/releases/tag/v4.0.0)
+coding pattern), but it's worth checking the [release](https://github.com/DamonOehlman/detect-browser/releases/tag/4.0.0)
 notes to get details on those edge cases.
 
 Additionally, with the source now being written in TypeScript the package
