@@ -1,6 +1,6 @@
 {
   "name": "detect-browser",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Unpack a browser type and version from the useragent string",
   "main": "index.js",
   "scripts": {
