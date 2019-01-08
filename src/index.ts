@@ -171,19 +171,19 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
     return new BotInfo();
   }
 
-  let version = match[1] && match[1].split(/[._]/).slice(0, 3);
-  if (version) {
-    if (version.length < REQUIRED_VERSION_PARTS) {
-      version = [
-        ...version,
-        ...new Array(REQUIRED_VERSION_PARTS - version.length).fill('0'),
+  let versionParts = match[1] && match[1].split(/[._]/).slice(0, 3);
+  if (versionParts) {
+    if (versionParts.length < REQUIRED_VERSION_PARTS) {
+      versionParts = [
+        ...versionParts,
+        ...createVersionParts(REQUIRED_VERSION_PARTS - versionParts.length),
       ];
     }
   } else {
-    version = [];
+    versionParts = [];
   }
 
-  return new BrowserInfo(name, version.join('.'), detectOS(ua));
+  return new BrowserInfo(name, versionParts.join('.'), detectOS(ua));
 }
 
 export function detectOS(ua: string): OperatingSystem | null {
@@ -194,4 +194,13 @@ export function detectOS(ua: string): OperatingSystem | null {
 export function getNodeVersion(): NodeInfo | null {
   const isNode = typeof process !== 'undefined' && process.version;
   return isNode ? new NodeInfo(process.version.slice(1)) : null;
+}
+
+function createVersionParts(count: number): string[] {
+  const output = [];
+  for (let ii = 0; ii < count; ii++) {
+    output.push('0');
+  }
+
+  return output;
 }
