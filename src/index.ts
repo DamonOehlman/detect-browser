@@ -187,8 +187,15 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
 }
 
 export function detectOS(ua: string): OperatingSystem | null {
-  const match = operatingSystemRules.find(([_, regex]) => regex.test(ua));
-  return match ? match[0] : null;
+  for (let ii = 0, count = operatingSystemRules.length; ii < count; ii++) {
+    const [os, regex] = operatingSystemRules[ii];
+    const match = regex.test(ua);
+    if (match) {
+      return os;
+    }
+  }
+
+  return null;
 }
 
 export function getNodeVersion(): NodeInfo | null {
