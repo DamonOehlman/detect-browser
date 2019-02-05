@@ -272,6 +272,51 @@ test('detects crawler: YandexBot', function (t) {
   t.end();
 });
 
+test('detects Opera-Mini', function (t) {
+  assertAgentString(t,
+    'Opera/9.80 (Android; Opera Mini/8.0.1807/36.1609; U; en) Presto/2.12.423 Version/12.16',
+    { name: 'opera-mini', version: '12.16.0', os: 'Android OS' }
+  );
+  
+  assertAgentString(t,
+    'Opera/9.80 (BlackBerry; Opera Mini/6.5.27548/27.2020; U; en) Presto/2.8.119 Version/11.10',
+    { name: 'opera-mini', version: '11.10.0', os: 'BlackBerry OS' }
+  );
+  t.end();
+});
+
+test('detects Silk', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (Linux; Android 4.4.3; KFTHWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/44.1.54 like Chrome/44.0.2403.63 Safari/537.36',
+    { name: 'silk', version: '44.1.54', os: 'Android OS' }
+  );
+
+  assertAgentString(t,
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Silk/44.1.54 like Chrome/44.0.2403.63 Safari/537.36',
+    { name: 'silk', version: '44.1.54', os: 'Linux' }
+  );
+
+  assertAgentString(t,
+    'Mozilla/5.0 (Linux; U; Android 4.4.3; KFTHWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/44.1.54 like Chrome/44.0.2403.63 Mobile Safari/537.36',
+    { name: 'silk', version: '44.1.54', os: 'Android OS' }
+  );
+
+  t.end();
+});
+
+test('detects Chrome OS', function (t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (X11; CrOS x86_64 10895.78.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.120 Safari/537.36',
+    { name: 'chrome', version: '69.0.3497', os: 'Chrome OS' }
+  );
+  
+  assertAgentString(t,
+    'Mozilla/5.0 (X11; U; CrOS i686 9.10.0; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Gecko/20100101 Firefox/29.0',
+    { name: 'firefox', version: '29.0.0', os: 'Chrome OS' }
+  );
+  t.end();
+});
+
 test('handles no browser', function(t) {
     assertAgentString(t,
         null,
