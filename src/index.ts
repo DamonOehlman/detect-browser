@@ -135,12 +135,12 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['Windows ME', /Windows ME/],
   ['Open BSD', /OpenBSD/],
   ['Sun OS', /SunOS/],
+  ['Chrome OS', /CrOS/],
   ['Linux', /(Linux)|(X11)/],
   ['Mac OS', /(Mac_PowerPC)|(Macintosh)/],
   ['QNX', /QNX/],
   ['BeOS', /BeOS/],
   ['OS/2', /OS\/2/],
-  ['Chrome OS', /CrOS/],
   ['Search Bot', SEARCHBOT_OS_REGEX],
 ];
 
