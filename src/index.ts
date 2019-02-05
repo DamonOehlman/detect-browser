@@ -34,11 +34,13 @@ type Browser =
   | 'vivaldi'
   | 'kakaotalk'
   | 'samsung'
+  | 'silk'
   | 'chrome'
   | 'phantomjs'
   | 'crios'
   | 'firefox'
   | 'fxios'
+  | 'opera-mini'
   | 'opera'
   | 'ie'
   | 'bb10'
@@ -74,6 +76,7 @@ type OperatingSystem =
   | 'QNX'
   | 'BeOS'
   | 'OS/2'
+  | 'Chrome OS'
   | 'Search Bot';
 type UserAgentRule = [Browser, RegExp];
 type UserAgentMatch = [Browser, RegExpExecArray] | false;
@@ -91,11 +94,13 @@ const userAgentRules: UserAgentRule[] = [
   ['vivaldi', /Vivaldi\/([0-9\.]+)/],
   ['kakaotalk', /KAKAOTALK\s([0-9\.]+)/],
   ['samsung', /SamsungBrowser\/([0-9\.]+)/],
+  ['silk', /\bSilk\/([0-9._-]+)\b/],
   ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/],
   ['crios', /CriOS\/([0-9\.]+)(:?\s|$)/],
   ['firefox', /Firefox\/([0-9\.]+)(?:\s|$)/],
   ['fxios', /FxiOS\/([0-9\.]+)/],
+  ['opera-mini', /Opera Mini.*Version\/([0-9\.]+)/],
   ['opera', /Opera\/([0-9\.]+)(?:\s|$)/],
   ['opera', /OPR\/([0-9\.]+)(:?\s|$)$/],
   ['ie', /Trident\/7\.0.*rv\:([0-9\.]+).*\).*Gecko$/],
@@ -135,6 +140,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['QNX', /QNX/],
   ['BeOS', /BeOS/],
   ['OS/2', /OS\/2/],
+  ['Chrome OS', /CrOS/],
   ['Search Bot', SEARCHBOT_OS_REGEX],
 ];
 
