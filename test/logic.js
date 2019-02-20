@@ -233,6 +233,16 @@ test('detects native iOS WebView browser', function (t) {
     { name: 'ios-webview', version: '605.1.15', os: 'iOS' }
   );
 
+  assertAgentString(t,
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16B92',
+    { name: 'ios-webview', version: '605.1.15', os: 'iOS' }
+  );
+
+  assertAgentString(t,
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko)',
+    { name: 'ios-webview', version: '605.1.15', os: 'iOS' }
+  );
+
   t.end();
 });
 
