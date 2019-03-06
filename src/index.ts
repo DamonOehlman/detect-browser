@@ -112,7 +112,8 @@ const userAgentRules: UserAgentRule[] = [
   ['safari', /Version\/([0-9\._]+).*Safari/],
   ['facebook', /FBAV\/([0-9\.]+)/],
   ['instagram', /Instagram\s([0-9\.]+)/],
-  ['ios-webview', /AppleWebKit\/([0-9\.]+).*Gecko\)/],
+  ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
+  ['ios-webview', /AppleWebKit\/([0-9\.]+).*Gecko\)$/],
   ['searchbot', SEARCHBOX_UA_REGEX],
 ];
 const operatingSystemRules: OperatingSystemRule[] = [
