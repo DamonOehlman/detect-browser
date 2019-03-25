@@ -16,6 +16,11 @@ test('detects Chrome', function(t) {
     { name: 'chrome', version: '41.0.2228', os: 'Windows 7' }
   );
 
+  assertAgentString(t,
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36',
+    { name: 'chrome', version: '72.0.3626', os: 'Windows 10' }
+  )
+  
   t.end();
 });
 
@@ -230,6 +235,16 @@ test('detects native iOS WebView browser', function (t) {
 
   assertAgentString(t,
     'Mozilla/5.0 (iPad; CPU OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E216',
+    { name: 'ios-webview', version: '605.1.15', os: 'iOS' }
+  );
+
+  assertAgentString(t,
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16B92',
+    { name: 'ios-webview', version: '605.1.15', os: 'iOS' }
+  );
+
+  assertAgentString(t,
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko)',
     { name: 'ios-webview', version: '605.1.15', os: 'iOS' }
   );
 
