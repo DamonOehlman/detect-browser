@@ -35,6 +35,7 @@ type Browser =
   | 'kakaotalk'
   | 'samsung'
   | 'silk'
+  | 'miui'
   | 'chrome'
   | 'phantomjs'
   | 'crios'
@@ -95,6 +96,7 @@ const userAgentRules: UserAgentRule[] = [
   ['kakaotalk', /KAKAOTALK\s([0-9\.]+)/],
   ['samsung', /SamsungBrowser\/([0-9\.]+)/],
   ['silk', /\bSilk\/([0-9._-]+)\b/],
+  ['miui', /MiuiBrowser\/([0-9\.]+)$/],
   ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/],
   ['crios', /CriOS\/([0-9\.]+)(:?\s|$)/],
