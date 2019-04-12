@@ -345,8 +345,15 @@ test('detects Beaker Browser', function(t) {
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) BeakerBrowser/0.8.7 Chrome/69.0.3497.128 Electron/4.1.3 Safari/537.36',
     { name: 'beaker', version: '0.8.7', os: 'Windows 10' }
   );
+});
+
+test('detects edge chromium', function(t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.48 Safari/537.36 Edg/74.1.96.24',
+    { name: 'edge-chromium', version: '74.1.96', os: 'Windows 10' }
+  );
   t.end();
-})
+});
 
 test('handles no browser', function(t) {
     assertAgentString(t,
