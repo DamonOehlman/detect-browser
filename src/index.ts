@@ -37,6 +37,7 @@ type Browser =
   | 'silk'
   | 'miui'
   | 'beaker'
+  | 'edge-chromium'
   | 'chrome'
   | 'phantomjs'
   | 'crios'
@@ -99,6 +100,7 @@ const userAgentRules: UserAgentRule[] = [
   ['silk', /\bSilk\/([0-9._-]+)\b/],
   ['miui', /MiuiBrowser\/([0-9\.]+)$/],
   ['beaker', /BeakerBrowser\/([0-9\.]+)/],
+  ['edge-chromium', /Edg\/([0-9\.]+)/],
   ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/],
   ['crios', /CriOS\/([0-9\.]+)(:?\s|$)/],
