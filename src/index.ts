@@ -108,7 +108,7 @@ const userAgentRules: UserAgentRule[] = [
   ['fxios', /FxiOS\/([0-9\.]+)/],
   ['opera-mini', /Opera Mini.*Version\/([0-9\.]+)/],
   ['opera', /Opera\/([0-9\.]+)(?:\s|$)/],
-  ['opera', /OPR\/([0-9\.]+)(:?\s|$)$/],
+  ['opera', /OPR\/([0-9\.]+)(:?\s|$)/],
   ['ie', /Trident\/7\.0.*rv\:([0-9\.]+).*\).*Gecko$/],
   ['ie', /MSIE\s([0-9\.]+);.*Trident\/[4-7].0/],
   ['ie', /MSIE\s(7\.0)/],
