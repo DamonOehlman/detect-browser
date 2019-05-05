@@ -361,6 +361,14 @@ test('detects edge chromium', function(t) {
   t.end();
 });
 
+test('detects edge chromium (iOS)', function(t) {
+  assertAgentString(t,
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 EdgiOS/44.2.1 Mobile/16D57 Safari/605.1.15',
+    { name: 'edge-ios', version: '44.2.1', os: 'iOS' }
+  );
+  t.end();
+})
+
 test('handles no browser', function(t) {
     assertAgentString(t,
         null,

@@ -48,6 +48,7 @@ type Browser =
   | 'ie'
   | 'bb10'
   | 'android'
+  | 'edge-ios'
   | 'ios'
   | 'safari'
   | 'facebook'
@@ -114,6 +115,7 @@ const userAgentRules: UserAgentRule[] = [
   ['ie', /MSIE\s(7\.0)/],
   ['bb10', /BB10;\sTouch.*Version\/([0-9\.]+)/],
   ['android', /Android\s([0-9\.]+)/],
+  ['edge-ios', /EdgiOS\/([0-9\.]+)/],
   ['ios', /Version\/([0-9\._]+).*Mobile.*Safari.*/],
   ['safari', /Version\/([0-9\._]+).*Safari/],
   ['facebook', /FBAV\/([0-9\.]+)/],
