@@ -39,6 +39,7 @@ type Browser =
   | 'beaker'
   | 'edge-chromium'
   | 'chrome'
+  | 'chromium-webview'
   | 'phantomjs'
   | 'crios'
   | 'firefox'
@@ -101,6 +102,7 @@ const userAgentRules: UserAgentRule[] = [
   ['miui', /MiuiBrowser\/([0-9\.]+)$/],
   ['beaker', /BeakerBrowser\/([0-9\.]+)/],
   ['edge-chromium', /Edg\/([0-9\.]+)/],
+  ['chromium-webview', /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/],
   ['crios', /CriOS\/([0-9\.]+)(:?\s|$)/],
@@ -183,7 +185,6 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
   if (name === 'searchbot') {
     return new BotInfo();
   }
-
   let versionParts = match[1] && match[1].split(/[._]/).slice(0, 3);
   if (versionParts) {
     if (versionParts.length < REQUIRED_VERSION_PARTS) {
