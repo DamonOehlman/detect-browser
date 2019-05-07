@@ -39,7 +39,7 @@ type Browser =
   | 'beaker'
   | 'edge-chromium'
   | 'chrome'
-  | 'chrome-webview'
+  | 'chromium-webview'
   | 'phantomjs'
   | 'crios'
   | 'firefox'
@@ -102,7 +102,7 @@ const userAgentRules: UserAgentRule[] = [
   ['miui', /MiuiBrowser\/([0-9\.]+)$/],
   ['beaker', /BeakerBrowser\/([0-9\.]+)/],
   ['edge-chromium', /Edg\/([0-9\.]+)/],
-  ['chrome-webview', /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
+  ['chromium-webview', /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/],
   ['crios', /CriOS\/([0-9\.]+)(:?\s|$)/],
