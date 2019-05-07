@@ -27,6 +27,10 @@ export class BotInfo implements DetectedInfo<'bot', null, null> {
   public readonly os: null = null;
 }
 
+export type DetectBrowserType = (BrowserInfo | BotInfo | NodeInfo);
+
+export type NonNodeType = (BrowserInfo | BotInfo);
+
 type Browser =
   | 'aol'
   | 'edge'
@@ -153,7 +157,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['Search Bot', SEARCHBOT_OS_REGEX],
 ];
 
-export function detect(): BrowserInfo | BotInfo | NodeInfo | null {
+export function detect(): DetectBrowserType | null {
   if (typeof navigator !== 'undefined') {
     return parseUserAgent(navigator.userAgent);
   }
@@ -161,7 +165,7 @@ export function detect(): BrowserInfo | BotInfo | NodeInfo | null {
   return getNodeVersion();
 }
 
-export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
+export function parseUserAgent(ua: string): NonNodeType | null {
   // opted for using reduce here rather than Array#first with a regex.test call
   // this is primarily because using the reduce we only perform the regex
   // execution once rather than once for the test and for the exec again below
