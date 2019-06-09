@@ -3,6 +3,7 @@
   "version": "4.5.0",
   "description": "Unpack a browser type and version from the useragent string",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "pretest": "tsc",
     "test": "node test",
