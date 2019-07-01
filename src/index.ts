@@ -157,7 +157,7 @@ export function detect(userAgent?: string): BrowserInfo | BotInfo | NodeInfo | n
   if (!!userAgent) {
     return parseUserAgent(userAgent);
   }
-  
+
   if (typeof navigator !== 'undefined') {
     return parseUserAgent(navigator.userAgent);
   }
