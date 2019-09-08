@@ -4,20 +4,20 @@ interface DetectedInfo<N extends string, O, V = null> {
   readonly os: O;
 }
 
-export class BrowserInfo implements DetectedInfo<Browser, OperatingSystem | null, string> {
+export class BrowserInfo
+  implements DetectedInfo<Browser, OperatingSystem | null, string> {
   constructor(
     public readonly name: Browser,
     public readonly version: string,
-    public readonly os: OperatingSystem | null) {
-  }
+    public readonly os: OperatingSystem | null
+  ) {}
 }
 
 export class NodeInfo implements DetectedInfo<'node', NodeJS.Platform, string> {
   public readonly name: 'node' = 'node';
   public readonly os: NodeJS.Platform = process.platform;
 
-  constructor( public readonly version: string) {
-  }
+  constructor(public readonly version: string) {}
 }
 
 export class BotInfo implements DetectedInfo<'bot', null, null> {
@@ -102,7 +102,10 @@ const userAgentRules: UserAgentRule[] = [
   ['miui', /MiuiBrowser\/([0-9\.]+)$/],
   ['beaker', /BeakerBrowser\/([0-9\.]+)/],
   ['edge-chromium', /Edg\/([0-9\.]+)/],
-  ['chromium-webview', /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
+  [
+    'chromium-webview',
+    /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/
+  ],
   ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/],
   ['crios', /CriOS\/([0-9\.]+)(:?\s|$)/],
@@ -122,7 +125,7 @@ const userAgentRules: UserAgentRule[] = [
   ['instagram', /Instagram\s([0-9\.]+)/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Gecko\)$/],
-  ['searchbot', SEARCHBOX_UA_REGEX],
+  ['searchbot', SEARCHBOX_UA_REGEX]
 ];
 const operatingSystemRules: OperatingSystemRule[] = [
   ['iOS', /iP(hone|od|ad)/],
@@ -150,10 +153,12 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['QNX', /QNX/],
   ['BeOS', /BeOS/],
   ['OS/2', /OS\/2/],
-  ['Search Bot', SEARCHBOT_OS_REGEX],
+  ['Search Bot', SEARCHBOT_OS_REGEX]
 ];
 
-export function detect(userAgent?: string): BrowserInfo | BotInfo | NodeInfo | null {
+export function detect(
+  userAgent?: string
+): BrowserInfo | BotInfo | NodeInfo | null {
   if (!!userAgent) {
     return parseUserAgent(userAgent);
   }
@@ -172,14 +177,17 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
   // probably something that needs to be benchmarked though
   const matchedRule: UserAgentMatch =
     ua !== '' &&
-    userAgentRules.reduce<UserAgentMatch>((matched: UserAgentMatch, [browser, regex]) => {
-      if (matched) {
-        return matched;
-      }
+    userAgentRules.reduce<UserAgentMatch>(
+      (matched: UserAgentMatch, [browser, regex]) => {
+        if (matched) {
+          return matched;
+        }
 
-      const uaMatch = regex.exec(ua);
-      return !!uaMatch && [browser, uaMatch];
-    }, false);
+        const uaMatch = regex.exec(ua);
+        return !!uaMatch && [browser, uaMatch];
+      },
+      false
+    );
 
   if (!matchedRule) {
     return null;
@@ -194,7 +202,7 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
     if (versionParts.length < REQUIRED_VERSION_PARTS) {
       versionParts = [
         ...versionParts,
-        ...createVersionParts(REQUIRED_VERSION_PARTS - versionParts.length),
+        ...createVersionParts(REQUIRED_VERSION_PARTS - versionParts.length)
       ];
     }
   } else {
