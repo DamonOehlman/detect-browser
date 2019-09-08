@@ -27,7 +27,7 @@ export class BotInfo implements DetectedInfo<'bot', null, null> {
   public readonly os: null = null;
 }
 
-type Browser =
+export type Browser =
   | 'aol'
   | 'edge'
   | 'yandexbrowser'
@@ -55,7 +55,7 @@ type Browser =
   | 'instagram'
   | 'ios-webview'
   | 'searchbot';
-type OperatingSystem =
+export type OperatingSystem =
   | 'iOS'
   | 'Android OS'
   | 'BlackBerry OS'
