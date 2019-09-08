@@ -15,6 +15,7 @@
     "minor-release": "npm version minor && npm publish && npm run postpublish",
     "major-release": "npm version major && npm publish && npm run postpublish",
     "postpublish": "git push origin master --follow-tags",
+    "autoformat": "prettier --write src/** test/**",
     "gendocs": "embellish README.md"
   },
   "stability": "stable",

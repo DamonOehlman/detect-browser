@@ -123,7 +123,7 @@ test('detects Opera', function(t) {
   assertAgentString(t, 'Opera/9.25 (Macintosh; Intel Mac OS X; U; en)', {
     name: 'opera',
     version: '9.25.0',
-    os: 'Mac OS'
+    os: 'Mac OS',
   });
 
   assertAgentString(

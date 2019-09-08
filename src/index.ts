@@ -104,7 +104,7 @@ const userAgentRules: UserAgentRule[] = [
   ['edge-chromium', /Edg\/([0-9\.]+)/],
   [
     'chromium-webview',
-    /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/
+    /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/,
   ],
   ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
   ['phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/],
@@ -125,7 +125,7 @@ const userAgentRules: UserAgentRule[] = [
   ['instagram', /Instagram\s([0-9\.]+)/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Gecko\)$/],
-  ['searchbot', SEARCHBOX_UA_REGEX]
+  ['searchbot', SEARCHBOX_UA_REGEX],
 ];
 const operatingSystemRules: OperatingSystemRule[] = [
   ['iOS', /iP(hone|od|ad)/],
@@ -153,7 +153,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['QNX', /QNX/],
   ['BeOS', /BeOS/],
   ['OS/2', /OS\/2/],
-  ['Search Bot', SEARCHBOT_OS_REGEX]
+  ['Search Bot', SEARCHBOT_OS_REGEX],
 ];
 
 export function detect(
@@ -202,7 +202,7 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
     if (versionParts.length < REQUIRED_VERSION_PARTS) {
       versionParts = [
         ...versionParts,
-        ...createVersionParts(REQUIRED_VERSION_PARTS - versionParts.length)
+        ...createVersionParts(REQUIRED_VERSION_PARTS - versionParts.length),
       ];
     }
   } else {
