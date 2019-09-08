@@ -9,7 +9,7 @@ export class BrowserInfo
   constructor(
     public readonly name: Browser,
     public readonly version: string,
-    public readonly os: OperatingSystem | null
+    public readonly os: OperatingSystem | null,
   ) {}
 }
 
@@ -157,7 +157,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
 ];
 
 export function detect(
-  userAgent?: string
+  userAgent?: string,
 ): BrowserInfo | BotInfo | NodeInfo | null {
   if (!!userAgent) {
     return parseUserAgent(userAgent);
@@ -186,7 +186,7 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
         const uaMatch = regex.exec(ua);
         return !!uaMatch && [browser, uaMatch];
       },
-      false
+      false,
     );
 
   if (!matchedRule) {
