@@ -30,6 +30,7 @@ export class BotInfo implements DetectedInfo<'bot', null, null> {
 export type Browser =
   | 'aol'
   | 'edge'
+  | 'edge-ios'
   | 'yandexbrowser'
   | 'vivaldi'
   | 'kakaotalk'
@@ -94,6 +95,7 @@ const REQUIRED_VERSION_PARTS = 3;
 const userAgentRules: UserAgentRule[] = [
   ['aol', /AOLShield\/([0-9\._]+)/],
   ['edge', /Edge\/([0-9\._]+)/],
+  ['edge-ios', /EdgiOS\/([0-9\._]+)/],
   ['yandexbrowser', /YaBrowser\/([0-9\._]+)/],
   ['vivaldi', /Vivaldi\/([0-9\.]+)/],
   ['kakaotalk', /KAKAOTALK\s([0-9\.]+)/],
