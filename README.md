@@ -8,6 +8,14 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/detect-browser.svg?branch=master)](https://travis-ci.org/DamonOehlman/detect-browser) [![Maintainability](https://api.codeclimate.com/v1/badges/84947fce3f3b06da69d0/maintainability)](https://codeclimate.com/github/DamonOehlman/detect-browser/maintainability)
 
+## Installation
+
+[![CDN](https://img.shields.io/badge/CDN-UNPKG-blue.svg)](https://unpkg.com/browse/detect-browser)
+
+[![NPM](https://img.shields.io/badge/Package-npm-purple.svg)](https://www.npmjs.com/package/detect-browser)
+
+_____
+
 ## Example Usage
 
 ```js
