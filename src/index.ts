@@ -20,6 +20,16 @@ export class NodeInfo implements DetectedInfo<'node', NodeJS.Platform, string> {
   constructor(public readonly version: string) {}
 }
 
+export class SearchBotDeviceInfo
+  implements DetectedInfo<Browser, OperatingSystem | null, string> {
+  constructor(
+    public readonly name: Browser,
+    public readonly version: string,
+    public readonly os: OperatingSystem | null,
+    public readonly bot: string,
+  ) {}
+}
+
 export class BotInfo implements DetectedInfo<'bot', null, null> {
   public readonly bot: true = true; // NOTE: deprecated test name instead
   public readonly name: 'bot' = 'bot';
@@ -81,15 +91,14 @@ export type OperatingSystem =
   | 'QNX'
   | 'BeOS'
   | 'OS/2'
-  | 'Chrome OS'
-  | 'Search Bot';
+  | 'Chrome OS';
 type UserAgentRule = [Browser, RegExp];
 type UserAgentMatch = [Browser, RegExpExecArray] | false;
 type OperatingSystemRule = [OperatingSystem, RegExp];
 
 // tslint:disable-next-line:max-line-length
 const SEARCHBOX_UA_REGEX = /alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/;
-const SEARCHBOT_OS_REGEX = /(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)/;
+const SEARCHBOT_OS_REGEX = /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask\ Jeeves\/Teoma|ia_archiver)/;
 const REQUIRED_VERSION_PARTS = 3;
 
 const userAgentRules: UserAgentRule[] = [
@@ -155,12 +164,11 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['QNX', /QNX/],
   ['BeOS', /BeOS/],
   ['OS/2', /OS\/2/],
-  ['Search Bot', SEARCHBOT_OS_REGEX],
 ];
 
 export function detect(
   userAgent?: string,
-): BrowserInfo | BotInfo | NodeInfo | null {
+): BrowserInfo | SearchBotDeviceInfo | BotInfo | NodeInfo | null {
   if (!!userAgent) {
     return parseUserAgent(userAgent);
   }
@@ -172,7 +180,9 @@ export function detect(
   return getNodeVersion();
 }
 
-export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
+export function parseUserAgent(
+  ua: string,
+): BrowserInfo | SearchBotDeviceInfo | BotInfo | null {
   // opted for using reduce here rather than Array#first with a regex.test call
   // this is primarily because using the reduce we only perform the regex
   // execution once rather than once for the test and for the exec again below
@@ -211,13 +221,21 @@ export function parseUserAgent(ua: string): BrowserInfo | BotInfo | null {
     versionParts = [];
   }
 
-  return new BrowserInfo(name, versionParts.join('.'), detectOS(ua));
+  const version = versionParts.join('.');
+  const os = detectOS(ua);
+  const searchBotMatch = SEARCHBOT_OS_REGEX.exec(ua);
+
+  if (searchBotMatch && searchBotMatch[1]) {
+    return new SearchBotDeviceInfo(name, version, os, searchBotMatch[1]);
+  }
+
+  return new BrowserInfo(name, versionParts.join('.'), os);
 }
 
 export function detectOS(ua: string): OperatingSystem | null {
   for (let ii = 0, count = operatingSystemRules.length; ii < count; ii++) {
     const [os, regex] = operatingSystemRules[ii];
-    const match = regex.test(ua);
+    const match = regex.exec(ua);
     if (match) {
       return os;
     }
