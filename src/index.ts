@@ -57,6 +57,7 @@ export type Browser =
   | 'fxios'
   | 'opera-mini'
   | 'opera'
+  | 'node'
   | 'ie'
   | 'bb10'
   | 'android'
