@@ -2,3 +2,6 @@ index.js
 index.d.ts
 node_modules
 npm-debug.log
+.idea
+es
+yarn-error.log
