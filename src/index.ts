@@ -5,7 +5,7 @@ interface DetectedInfo<
   N extends string,
   O,
   V = null
-> {
+  > {
   readonly type: T;
   readonly name: N;
   readonly version: V;
@@ -19,7 +19,7 @@ export class BrowserInfo
     public readonly name: Browser,
     public readonly version: string,
     public readonly os: OperatingSystem | null,
-  ) {}
+  ) { }
 }
 
 export class NodeInfo
@@ -28,19 +28,19 @@ export class NodeInfo
   public readonly name: 'node' = 'node';
   public readonly os: NodeJS.Platform = process.platform;
 
-  constructor(public readonly version: string) {}
+  constructor(public readonly version: string) { }
 }
 
 export class SearchBotDeviceInfo
   implements
-    DetectedInfo<'bot-device', Browser, OperatingSystem | null, string> {
+  DetectedInfo<'bot-device', Browser, OperatingSystem | null, string> {
   public readonly type = 'bot-device';
   constructor(
     public readonly name: Browser,
     public readonly version: string,
     public readonly os: OperatingSystem | null,
     public readonly bot: string,
-  ) {}
+  ) { }
 }
 
 export class BotInfo implements DetectedInfo<'bot', 'bot', null, null> {
@@ -56,7 +56,6 @@ export type Browser =
   | 'edge'
   | 'edge-ios'
   | 'yandexbrowser'
-  | 'vivaldi'
   | 'kakaotalk'
   | 'samsung'
   | 'silk'
@@ -120,7 +119,6 @@ const userAgentRules: UserAgentRule[] = [
   ['edge', /Edge\/([0-9\._]+)/],
   ['edge-ios', /EdgiOS\/([0-9\._]+)/],
   ['yandexbrowser', /YaBrowser\/([0-9\._]+)/],
-  ['vivaldi', /Vivaldi\/([0-9\.]+)/],
   ['kakaotalk', /KAKAOTALK\s([0-9\.]+)/],
   ['samsung', /SamsungBrowser\/([0-9\.]+)/],
   ['silk', /\bSilk\/([0-9._-]+)\b/],
