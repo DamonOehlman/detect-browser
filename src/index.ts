@@ -180,14 +180,12 @@ export function detect(
   return getNodeVersion();
 }
 
-export function parseUserAgent(
-  ua: string,
-): BrowserInfo | SearchBotDeviceInfo | BotInfo | null {
+function matchUserAgent(ua: string): UserAgentMatch {
   // opted for using reduce here rather than Array#first with a regex.test call
   // this is primarily because using the reduce we only perform the regex
   // execution once rather than once for the test and for the exec again below
   // probably something that needs to be benchmarked though
-  const matchedRule: UserAgentMatch =
+  return (
     ua !== '' &&
     userAgentRules.reduce<UserAgentMatch>(
       (matched: UserAgentMatch, [browser, regex]) => {
@@ -199,7 +197,19 @@ export function parseUserAgent(
         return !!uaMatch && [browser, uaMatch];
       },
       false,
-    );
+    )
+  );
+}
+
+export function browserName(ua: string): Browser | null {
+  const data = matchUserAgent(ua);
+  return data ? data[0] : null;
+}
+
+export function parseUserAgent(
+  ua: string,
+): BrowserInfo | SearchBotDeviceInfo | BotInfo | null {
+  const matchedRule: UserAgentMatch = matchUserAgent(ua);
 
   if (!matchedRule) {
     return null;
