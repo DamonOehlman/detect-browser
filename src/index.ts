@@ -1,11 +1,20 @@
-interface DetectedInfo<N extends string, O, V = null> {
+export type DetectedInfoType = 'browser' | 'node' | 'bot-device' | 'bot';
+
+interface DetectedInfo<
+  T extends DetectedInfoType,
+  N extends string,
+  O,
+  V = null
+> {
+  readonly type: T;
   readonly name: N;
   readonly version: V;
   readonly os: O;
 }
 
 export class BrowserInfo
-  implements DetectedInfo<Browser, OperatingSystem | null, string> {
+  implements DetectedInfo<'browser', Browser, OperatingSystem | null, string> {
+  public readonly type = 'browser';
   constructor(
     public readonly name: Browser,
     public readonly version: string,
@@ -13,7 +22,9 @@ export class BrowserInfo
   ) {}
 }
 
-export class NodeInfo implements DetectedInfo<'node', NodeJS.Platform, string> {
+export class NodeInfo
+  implements DetectedInfo<'node', 'node', NodeJS.Platform, string> {
+  public readonly type = 'node';
   public readonly name: 'node' = 'node';
   public readonly os: NodeJS.Platform = process.platform;
 
@@ -21,7 +32,9 @@ export class NodeInfo implements DetectedInfo<'node', NodeJS.Platform, string> {
 }
 
 export class SearchBotDeviceInfo
-  implements DetectedInfo<Browser, OperatingSystem | null, string> {
+  implements
+    DetectedInfo<'bot-device', Browser, OperatingSystem | null, string> {
+  public readonly type = 'bot-device';
   constructor(
     public readonly name: Browser,
     public readonly version: string,
@@ -30,7 +43,8 @@ export class SearchBotDeviceInfo
   ) {}
 }
 
-export class BotInfo implements DetectedInfo<'bot', null, null> {
+export class BotInfo implements DetectedInfo<'bot', 'bot', null, null> {
+  public readonly type = 'bot';
   public readonly bot: true = true; // NOTE: deprecated test name instead
   public readonly name: 'bot' = 'bot';
   public readonly version: null = null;
