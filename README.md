@@ -14,7 +14,7 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![NPM](https://img.shields.io/badge/Package-npm-purple.svg)](https://www.npmjs.com/package/detect-browser)
 
-_____
+---
 
 ## Example Usage
 
@@ -52,19 +52,43 @@ switch (browser && browser.name) {
 }
 ```
 
-## NOTE: Upgrading to 4.x
+Additionally, from `5.x` a `type` discriminator is included in the result
+should you want to use this (it's a nice convenience in a TS environment).
 
-If you have been using `3.x` the main thing to be aware of is that the `bot` boolean flag
-has been removed from all but the `BotInfo` results (yes, `4.x` introduces some
-lightweight classes for identifying the type of result you have received).
+Contrived example:
 
-In all but a few cases this change will be transparent to most users (given common JS
-coding pattern), but it's worth checking the [release](https://github.com/DamonOehlman/detect-browser/releases/tag/4.0.0)
-notes to get details on those edge cases.
+```ts
+import { detect } from '../src';
 
-Additionally, with the source now being written in TypeScript the package
-ships with type declarations so you shouldn't need the `@types/detect-browser`
-package anymore (thanks to those that put the effort into creating it though).
+const result = detect();
+if (result) {
+  switch (result.type) {
+    case 'bot':
+      // result is an instanceof BotInfo
+      console.log(`found ${result.name} bot`);
+      break;
+
+    case 'bot-device':
+      // result is an instanceof SearchBotDeviceInfo
+      console.log(`found ${result.name} device bot`);
+      break;
+
+    case 'browser':
+      // result is an instanceof BrowserInfo
+      console.log(`found ${result.name} browser`);
+      break;
+
+    case 'node':
+      // result is an instanceof NodeInfo
+      console.log(`found node version ${result.version}`);
+      break;
+  }
+}
+```
+
+**NOTE:** In addition to the the `detect` function, `browserName` and
+`detectOS` are provided as exports if you want to only access certain
+information.
 
 ## Adding additional browser support
 
@@ -75,16 +99,15 @@ then please submit a pull request with the implementation.
 Creating an acceptable implementation requires two things:
 
 1. A test demonstrating that the regular expression you have defined identifies
-your new browser correctly. Examples of this can be found in the
-`test/logic.js` file.
+   your new browser correctly. Examples of this can be found in the
+   `test/logic.js` file.
 
-
-2)  Write the actual regex to the `index.js` file. In most cases adding
-    the regex to the list of existing regexes will be suitable (if usage of `detect-brower`
-    returns `undefined` for instance), but in some cases you might have to add it before
-    an existing regex. This would be true for a case where you have a browser that
-    is a specialised variant of an existing browser but is identified as the
-    non-specialised case.
+2. Write the actual regex to the `index.js` file. In most cases adding
+   the regex to the list of existing regexes will be suitable (if usage of `detect-brower`
+   returns `undefined` for instance), but in some cases you might have to add it before
+   an existing regex. This would be true for a case where you have a browser that
+   is a specialised variant of an existing browser but is identified as the
+   non-specialised case.
 
 When writing the regular expression remember that you would write it containing a
 single [capturing group](https://regexone.com/lesson/capturing_groups) which
@@ -113,5 +136,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
