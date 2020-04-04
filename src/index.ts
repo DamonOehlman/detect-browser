@@ -251,7 +251,7 @@ export function parseUserAgent(
     return new SearchBotDeviceInfo(name, version, os, searchBotMatch[1]);
   }
 
-  return new BrowserInfo(name, versionParts.join('.'), os);
+  return new BrowserInfo(name, version, os);
 }
 
 export function detectOS(ua: string): OperatingSystem | null {
