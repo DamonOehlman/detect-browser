@@ -1,4 +1,4 @@
-export type DetectedInfoType = 'browser' | 'node' | 'bot-device' | 'bot';
+export type DetectedInfoType = 'browser' | 'node' | 'bot-device' | 'bot' | 'react-native';
 
 interface DetectedInfo<
   T extends DetectedInfoType,
@@ -50,6 +50,14 @@ export class BotInfo implements DetectedInfo<'bot', 'bot', null, null> {
   public readonly version: null = null;
   public readonly os: null = null;
 }
+
+export class ReactNativeInfo
+  implements DetectedInfo<'react-native', 'react-native', null, null> {
+  public readonly type = 'react-native';
+  public readonly name: 'react-native' = 'react-native';
+  public readonly version: null = null;
+  public readonly os: null = null;
+};
 
 export type Browser =
   | 'aol'
@@ -180,9 +188,17 @@ const operatingSystemRules: OperatingSystemRule[] = [
 
 export function detect(
   userAgent?: string,
-): BrowserInfo | SearchBotDeviceInfo | BotInfo | NodeInfo | null {
+): BrowserInfo | SearchBotDeviceInfo | BotInfo | NodeInfo | ReactNativeInfo | null {
   if (!!userAgent) {
     return parseUserAgent(userAgent);
+  }
+
+  if (
+    typeof document !== 'undefined' &&
+    typeof navigator !== 'undefined' &&
+    navigator.product === 'ReactNative'
+  ) {
+    return new ReactNativeInfo();
   }
 
   if (typeof navigator !== 'undefined') {
