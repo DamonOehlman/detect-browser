@@ -194,7 +194,7 @@ export function detect(
   }
 
   if (
-    typeof document !== 'undefined' &&
+    typeof document === 'undefined' &&
     typeof navigator !== 'undefined' &&
     navigator.product === 'ReactNative'
   ) {
