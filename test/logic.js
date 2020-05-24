@@ -24,6 +24,12 @@ test('detects Chrome', function(t) {
     { type: 'browser', name: 'chrome', version: '72.0.3626', os: 'Windows 10' },
   );
 
+  assertAgentString(
+    t,
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36',
+    { type: 'browser', name: 'chrome', version: '72.0.3626', os: 'Windows 10' },
+  );
+
   t.end();
 });
 
