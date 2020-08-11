@@ -103,7 +103,7 @@ Creating an acceptable implementation requires two things:
    `test/logic.js` file.
 
 2. Write the actual regex to the `index.js` file. In most cases adding
-   the regex to the list of existing regexes will be suitable (if usage of `detect-brower`
+   the regex to the list of existing regexes will be suitable (if usage of `detect-browser`
    returns `undefined` for instance), but in some cases you might have to add it before
    an existing regex. This would be true for a case where you have a browser that
    is a specialised variant of an existing browser but is identified as the
