@@ -14,6 +14,10 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![NPM](https://img.shields.io/badge/Package-npm-purple.svg)](https://www.npmjs.com/package/detect-browser)
 
+## Release History
+
+Release history can be found in the [github releases list](https://github.com/DamonOehlman/detect-browser/releases).
+
 ---
 
 ## Example Usage
@@ -89,6 +93,8 @@ if (result) {
 **NOTE:** In addition to the the `detect` function, `browserName` and
 `detectOS` are provided as exports if you want to only access certain
 information.
+
+An editable observable workbook is [available here](https://observablehq.com/@rayshan/browser-detection-tester-using-the-detect-browser-package).
 
 ## Adding additional browser support
 
