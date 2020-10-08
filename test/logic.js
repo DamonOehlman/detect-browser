@@ -426,6 +426,20 @@ test('detects edge chromium', function(t) {
   t.end();
 });
 
+test('detects edge chromium (android os)', function(t) {
+  assertAgentString(
+    t,
+    'Mozilla/5.0 (Linux; Android 9; SM-N950F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.116 Mobile Safari/537.36 EdgA/45.08.4.5074',
+    {
+      type: 'browser',
+      name: 'edge-chromium',
+      version: '45.08.4',
+      os: 'Android OS',
+    },
+  );
+  t.end();
+});
+
 test('detects edge iOS', function(t) {
   assertAgentString(
     t,
