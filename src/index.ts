@@ -258,7 +258,8 @@ export function parseUserAgent(
   if (name === 'searchbot') {
     return new BotInfo();
   }
-  let versionParts = match[1] && match[1].split(/[._]/).slice(0, 3);
+  // Do not use RegExp for split operation as some browser do not support it (See: http://blog.stevenlevithan.com/archives/cross-browser-split)
+  let versionParts = match[1] && match[1].split('.').join('_').split('_').slice(0, 3);
   if (versionParts) {
     if (versionParts.length < REQUIRED_VERSION_PARTS) {
       versionParts = [
