@@ -142,7 +142,7 @@ const userAgentRules: UserAgentRule[] = [
     'chromium-webview',
     /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/,
   ],
-  ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/],
+  ['chrome', /(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9\.]+)(\.[a-zA-Z0-9]+)?(:?\s|$)/],
   ['phantomjs', /PhantomJS\/([0-9\.]+)(:?\s|$)/],
   ['crios', /CriOS\/([0-9\.]+)(:?\s|$)/],
   ['firefox', /Firefox\/([0-9\.]+)(?:\s|$)/],
