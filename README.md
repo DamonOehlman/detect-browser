@@ -14,6 +14,10 @@ a semver compatible format) using a navigator useragent in a browser or
 
 [![NPM](https://img.shields.io/badge/Package-npm-purple.svg)](https://www.npmjs.com/package/detect-browser)
 
+## Release History
+
+Release history can be found in the [github releases list](https://github.com/DamonOehlman/detect-browser/releases).
+
 ---
 
 ## Example Usage
@@ -90,6 +94,8 @@ if (result) {
 `detectOS` are provided as exports if you want to only access certain
 information.
 
+An editable observable workbook is [available here](https://observablehq.com/@rayshan/browser-detection-tester-using-the-detect-browser-package).
+
 ## Adding additional browser support
 
 The current list of browsers that can be detected by `detect-browser` is
@@ -103,7 +109,7 @@ Creating an acceptable implementation requires two things:
    `test/logic.js` file.
 
 2. Write the actual regex to the `index.js` file. In most cases adding
-   the regex to the list of existing regexes will be suitable (if usage of `detect-brower`
+   the regex to the list of existing regexes will be suitable (if usage of `detect-browser`
    returns `undefined` for instance), but in some cases you might have to add it before
    an existing regex. This would be true for a case where you have a browser that
    is a specialised variant of an existing browser but is identified as the

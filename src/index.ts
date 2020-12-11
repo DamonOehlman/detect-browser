@@ -1,11 +1,16 @@
-export type DetectedInfoType = 'browser' | 'node' | 'bot-device' | 'bot' | 'react-native';
+export type DetectedInfoType =
+  | 'browser'
+  | 'node'
+  | 'bot-device'
+  | 'bot'
+  | 'react-native';
 
 interface DetectedInfo<
   T extends DetectedInfoType,
   N extends string,
   O,
   V = null
-  > {
+> {
   readonly type: T;
   readonly name: N;
   readonly version: V;
@@ -19,7 +24,7 @@ export class BrowserInfo
     public readonly name: Browser,
     public readonly version: string,
     public readonly os: OperatingSystem | null,
-  ) { }
+  ) {}
 }
 
 export class NodeInfo
@@ -28,19 +33,19 @@ export class NodeInfo
   public readonly name: 'node' = 'node';
   public readonly os: NodeJS.Platform = process.platform;
 
-  constructor(public readonly version: string) { }
+  constructor(public readonly version: string) {}
 }
 
 export class SearchBotDeviceInfo
   implements
-  DetectedInfo<'bot-device', Browser, OperatingSystem | null, string> {
+    DetectedInfo<'bot-device', Browser, OperatingSystem | null, string> {
   public readonly type = 'bot-device';
   constructor(
     public readonly name: Browser,
     public readonly version: string,
     public readonly os: OperatingSystem | null,
     public readonly bot: string,
-  ) { }
+  ) {}
 }
 
 export class BotInfo implements DetectedInfo<'bot', 'bot', null, null> {
@@ -57,7 +62,7 @@ export class ReactNativeInfo
   public readonly name: 'react-native' = 'react-native';
   public readonly version: null = null;
   public readonly os: null = null;
-};
+}
 
 export type Browser =
   | 'aol'
@@ -134,7 +139,7 @@ const userAgentRules: UserAgentRule[] = [
   ['silk', /\bSilk\/([0-9._-]+)\b/],
   ['miui', /MiuiBrowser\/([0-9\.]+)$/],
   ['beaker', /BeakerBrowser\/([0-9\.]+)/],
-  ['edge-chromium', /Edg\/([0-9\.]+)/],
+  ['edge-chromium', /EdgA?\/([0-9\.]+)/],
   [
     'chromium-webview',
     /(?!Chrom.*OPR)wv\).*Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/,
@@ -193,7 +198,13 @@ const operatingSystemRules: OperatingSystemRule[] = [
 
 export function detect(
   userAgent?: string,
-): BrowserInfo | SearchBotDeviceInfo | BotInfo | NodeInfo | ReactNativeInfo | null {
+):
+  | BrowserInfo
+  | SearchBotDeviceInfo
+  | BotInfo
+  | NodeInfo
+  | ReactNativeInfo
+  | null {
   if (!!userAgent) {
     return parseUserAgent(userAgent);
   }
@@ -272,7 +283,7 @@ export function parseUserAgent(
     return new SearchBotDeviceInfo(name, version, os, searchBotMatch[1]);
   }
 
-  return new BrowserInfo(name, versionParts.join('.'), os);
+  return new BrowserInfo(name, version, os);
 }
 
 export function detectOS(ua: string): OperatingSystem | null {
