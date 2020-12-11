@@ -519,7 +519,7 @@ test('detects PIE 1.1', function(t) {
 });
 
 
-/** Windows CE Pegasus (CE 1.0x) PIE 1.1 */
+/** Windows CE Stinger SmartPhone 2003 */
 test('detects NetFront', function(t) {
   assertAgentString(
     t,
