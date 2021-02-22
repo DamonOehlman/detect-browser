@@ -91,6 +91,7 @@ export type Browser =
   | 'facebook'
   | 'instagram'
   | 'ios-webview'
+  | 'curl'
   | 'searchbot';
 export type OperatingSystem =
   | 'iOS'
@@ -124,7 +125,7 @@ type OperatingSystemRule = [OperatingSystem, RegExp];
 
 // tslint:disable-next-line:max-line-length
 const SEARCHBOX_UA_REGEX = /alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/;
-const SEARCHBOT_OS_REGEX = /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask\ Jeeves\/Teoma|ia_archiver)/;
+const SEARCHBOT_OS_REGEX = /(nuhk|curl|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask\ Jeeves\/Teoma|ia_archiver)/;
 const REQUIRED_VERSION_PARTS = 3;
 
 const userAgentRules: UserAgentRule[] = [
@@ -161,6 +162,7 @@ const userAgentRules: UserAgentRule[] = [
   ['instagram', /Instagram\s([0-9\.]+)/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Gecko\)$/],
+  ['curl', /^curl\/([0-9\.]+)$/],
   ['searchbot', SEARCHBOX_UA_REGEX],
 ];
 const operatingSystemRules: OperatingSystemRule[] = [
