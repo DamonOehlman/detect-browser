@@ -7,7 +7,7 @@
     "outDir": "./",
     "rootDir": "./src/",
     "strict": true,
-    "types": ["node"]
+    "types": []
   },
   "include": [
     "./src/**/*.ts"
