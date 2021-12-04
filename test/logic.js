@@ -486,6 +486,54 @@ test('detects extended bot info', function(t) {
   t.end();
 });
 
+/** Windows CE Ozone (CE 4.2 P/PC 2003) */
+test('detects PocketPC2003', function(t) {
+  assertAgentString(
+    t,
+    'Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320)',
+    {
+      type: 'browser',
+      name: 'pie',
+      version: '4.01.0',
+      os: 'Windows CE',
+    },
+  );
+
+  t.end();
+});
+
+/** Windows CE Pegasus (CE 1.0x) PIE 1.1 */
+test('detects PIE 1.1', function(t) {
+  assertAgentString(
+    t,
+    'Mozilla/1.1 (compatible; MSPIE 1.1; Windows CE)',
+    {
+      type: 'browser',
+      name: 'pie',
+      version: '1.1.0',
+      os: 'Windows CE',
+    },
+  );
+
+  t.end();
+});
+
+
+/** Windows CE Stinger SmartPhone 2003 */
+test('detects NetFront', function(t) {
+  assertAgentString(
+    t,
+    'Mozilla/4.0 (PDA; Windows CE;1.0.0) NetFront/3.0',
+    {
+      type: 'browser',
+      name: 'netfront',
+      version: '3.0.0',
+      os: 'Windows CE',
+    },
+  );
+
+  t.end();
+});
 
 test('detects extended bot info', function(t) {
   assertAgentString(

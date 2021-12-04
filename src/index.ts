@@ -83,6 +83,8 @@ export type Browser =
   | 'fxios'
   | 'opera-mini'
   | 'opera'
+  | 'pie'
+  | 'netfront'
   | 'ie'
   | 'bb10'
   | 'android'
@@ -111,6 +113,7 @@ export type OperatingSystem =
   | 'Windows 8.1'
   | 'Windows 10'
   | 'Windows ME'
+  | 'Windows CE'
   | 'Open BSD'
   | 'Sun OS'
   | 'Linux'
@@ -151,6 +154,9 @@ const userAgentRules: UserAgentRule[] = [
   ['opera-mini', /Opera Mini.*Version\/([0-9\.]+)/],
   ['opera', /Opera\/([0-9\.]+)(?:\s|$)/],
   ['opera', /OPR\/([0-9\.]+)(:?\s|$)/],
+  ['pie',/^Microsoft Pocket Internet Explorer\/(\d+\.\d+)$/],
+  ['pie',/^Mozilla\/\d\.\d+\s\(compatible;\s(?:MSP?IE|MSInternet Explorer) (\d+\.\d+);.*Windows CE.*\)$/],
+  ['netfront',/^Mozilla\/\d\.\d+.*NetFront\/(\d.\d)/],
   ['ie', /Trident\/7\.0.*rv\:([0-9\.]+).*\).*Gecko$/],
   ['ie', /MSIE\s([0-9\.]+);.*Trident\/[4-7].0/],
   ['ie', /MSIE\s(7\.0)/],
@@ -183,6 +189,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['Windows 8.1', /(Windows NT 6.3)/],
   ['Windows 10', /(Windows NT 10.0)/],
   ['Windows ME', /Windows ME/],
+  ['Windows CE', /Windows CE|WinCE|Microsoft Pocket Internet Explorer/],
   ['Open BSD', /OpenBSD/],
   ['Sun OS', /SunOS/],
   ['Chrome OS', /CrOS/],
