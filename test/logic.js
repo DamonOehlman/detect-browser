@@ -534,3 +534,19 @@ test('detects NetFront', function(t) {
 
   t.end();
 });
+
+test('detects extended bot info', function(t) {
+  assertAgentString(
+    t,
+    'curl/7.64.1',
+    {
+      type: 'bot-device',
+      name: 'curl',
+      version: '7.64.1',
+      os: null,
+      bot: 'curl',
+    },
+  );
+
+  t.end();
+});
