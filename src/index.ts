@@ -93,6 +93,7 @@ export type Browser =
   | 'facebook'
   | 'instagram'
   | 'ios-webview'
+  | 'curl'
   | 'searchbot';
 export type OperatingSystem =
   | 'iOS'
@@ -127,7 +128,7 @@ type OperatingSystemRule = [OperatingSystem, RegExp];
 
 // tslint:disable-next-line:max-line-length
 const SEARCHBOX_UA_REGEX = /alexa|bot|crawl(er|ing)|facebookexternalhit|feedburner|google web preview|nagios|postrank|pingdom|slurp|spider|yahoo!|yandex/;
-const SEARCHBOT_OS_REGEX = /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask\ Jeeves\/Teoma|ia_archiver)/;
+const SEARCHBOT_OS_REGEX = /(nuhk|curl|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask\ Jeeves\/Teoma|ia_archiver)/;
 const REQUIRED_VERSION_PARTS = 3;
 
 const userAgentRules: UserAgentRule[] = [
@@ -163,10 +164,11 @@ const userAgentRules: UserAgentRule[] = [
   ['android', /Android\s([0-9\.]+)/],
   ['ios', /Version\/([0-9\._]+).*Mobile.*Safari.*/],
   ['safari', /Version\/([0-9\._]+).*Safari/],
-  ['facebook', /FBAV\/([0-9\.]+)/],
+  ['facebook', /FB[AS]V\/([0-9\.]+)/],
   ['instagram', /Instagram\s([0-9\.]+)/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Gecko\)$/],
+  ['curl', /^curl\/([0-9\.]+)$/],
   ['searchbot', SEARCHBOX_UA_REGEX],
 ];
 const operatingSystemRules: OperatingSystemRule[] = [
@@ -265,7 +267,8 @@ export function parseUserAgent(
   if (name === 'searchbot') {
     return new BotInfo();
   }
-  let versionParts = match[1] && match[1].split(/[._]/).slice(0, 3);
+  // Do not use RegExp for split operation as some browser do not support it (See: http://blog.stevenlevithan.com/archives/cross-browser-split)
+  let versionParts = match[1] && match[1].split('.').join('_').split('_').slice(0, 3);
   if (versionParts) {
     if (versionParts.length < REQUIRED_VERSION_PARTS) {
       versionParts = [
