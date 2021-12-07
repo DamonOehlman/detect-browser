@@ -60,7 +60,7 @@ export class ReactNativeInfo
   implements DetectedInfo<'react-native', 'react-native', null, null> {
   public readonly type = 'react-native';
   public readonly name: 'react-native' = 'react-native';
-  public readonly version: null = null;
+  public readonly version: string = '1000.0.0'; // See react-native/package.json
   public readonly os: null = null;
 }
 
