@@ -210,7 +210,7 @@ export function detect(
   | ReactNativeInfo
   | null {
   if (!!userAgent) {
-    return parseUserAgent(userAgent);
+    return cachedParseUserAgent(userAgent);
   }
 
   if (
@@ -222,7 +222,7 @@ export function detect(
   }
 
   if (typeof navigator !== 'undefined') {
-    return parseUserAgent(navigator.userAgent);
+    return cachedParseUserAgent(navigator.userAgent);
   }
 
   return getNodeVersion();
@@ -315,4 +315,12 @@ function createVersionParts(count: number): string[] {
   }
 
   return output;
+}
+
+const parseCache: { [key:string]: BrowserInfo | SearchBotDeviceInfo | BotInfo | null } = {};
+
+export function cachedParseUserAgent(
+  ua: string,
+): BrowserInfo | SearchBotDeviceInfo | BotInfo | null {
+  return parseCache[ua] || (parseCache[ua] = parseUserAgent(ua));
 }
