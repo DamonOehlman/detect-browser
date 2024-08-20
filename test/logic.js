@@ -550,3 +550,28 @@ test('detects extended bot info', function(t) {
 
   t.end();
 });
+
+test('detects Haiku', function(t) {
+  assertAgentString(
+    t,
+    'Mozilla/5.0 (Macintosh; Intel Haiku R1) AppleWebKit/605.1.15 (KHTML, like Gecko) WebPositive/1.3 Version/14.1.2 Safari/605.1.15',
+    {
+      type: 'browser',
+      name: 'safari',
+      version: '14.1.2',
+      os: 'Haiku',
+    },
+  );
+  assertAgentString(
+    t,
+    'Mozilla/5.0 (X11; Haiku x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Falkon/23.08.4 QtWebEngine/5.15.17 Chrome/87.0.4280.144 Safari/537.36',
+    {
+      type: 'browser',
+      name: 'chrome',
+      version: '87.0.4280',
+      os: 'Haiku',
+    },
+  );
+
+  t.end();
+});

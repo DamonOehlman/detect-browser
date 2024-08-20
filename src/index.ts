@@ -116,6 +116,7 @@ export type OperatingSystem =
   | 'Windows CE'
   | 'Open BSD'
   | 'Sun OS'
+  | 'Haiku'
   | 'Linux'
   | 'Mac OS'
   | 'QNX'
@@ -193,6 +194,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['Open BSD', /OpenBSD/],
   ['Sun OS', /SunOS/],
   ['Chrome OS', /CrOS/],
+  ['Haiku', /Haiku/],
   ['Linux', /(Linux)|(X11)/],
   ['Mac OS', /(Mac_PowerPC)|(Macintosh)/],
   ['QNX', /QNX/],
