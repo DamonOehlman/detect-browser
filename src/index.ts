@@ -24,7 +24,7 @@ export class BrowserInfo
     public readonly name: Browser,
     public readonly version: string,
     public readonly os: OperatingSystem | null,
-  ) {}
+  ) { }
 }
 
 export class NodeInfo
@@ -33,19 +33,19 @@ export class NodeInfo
   public readonly name: 'node' = 'node';
   public readonly os: NodeJS.Platform = process.platform;
 
-  constructor(public readonly version: string) {}
+  constructor(public readonly version: string) { }
 }
 
 export class SearchBotDeviceInfo
   implements
-    DetectedInfo<'bot-device', Browser, OperatingSystem | null, string> {
+  DetectedInfo<'bot-device', Browser, OperatingSystem | null, string> {
   public readonly type = 'bot-device';
   constructor(
     public readonly name: Browser,
     public readonly version: string,
     public readonly os: OperatingSystem | null,
     public readonly bot: string,
-  ) {}
+  ) { }
 }
 
 export class BotInfo implements DetectedInfo<'bot', 'bot', null, null> {
@@ -94,7 +94,8 @@ export type Browser =
   | 'instagram'
   | 'ios-webview'
   | 'curl'
-  | 'searchbot';
+  | 'searchbot'
+  | 'nokia-communicator';
 export type OperatingSystem =
   | 'iOS'
   | 'Android OS'
@@ -121,7 +122,8 @@ export type OperatingSystem =
   | 'QNX'
   | 'BeOS'
   | 'OS/2'
-  | 'Chrome OS';
+  | 'Chrome OS'
+  | 'GEOS';
 type UserAgentRule = [Browser, RegExp];
 type UserAgentMatch = [Browser, RegExpExecArray] | false;
 type OperatingSystemRule = [OperatingSystem, RegExp];
@@ -154,9 +156,9 @@ const userAgentRules: UserAgentRule[] = [
   ['opera-mini', /Opera Mini.*Version\/([0-9\.]+)/],
   ['opera', /Opera\/([0-9\.]+)(?:\s|$)/],
   ['opera', /OPR\/([0-9\.]+)(:?\s|$)/],
-  ['pie',/^Microsoft Pocket Internet Explorer\/(\d+\.\d+)$/],
-  ['pie',/^Mozilla\/\d\.\d+\s\(compatible;\s(?:MSP?IE|MSInternet Explorer) (\d+\.\d+);.*Windows CE.*\)$/],
-  ['netfront',/^Mozilla\/\d\.\d+.*NetFront\/(\d.\d)/],
+  ['pie', /^Microsoft Pocket Internet Explorer\/(\d+\.\d+)$/],
+  ['pie', /^Mozilla\/\d\.\d+\s\(compatible;\s(?:MSP?IE|MSInternet Explorer) (\d+\.\d+);.*Windows CE.*\)$/],
+  ['netfront', /^Mozilla\/\d\.\d+.*NetFront\/(\d.\d)/],
   ['ie', /Trident\/7\.0.*rv\:([0-9\.]+).*\).*Gecko$/],
   ['ie', /MSIE\s([0-9\.]+);.*Trident\/[4-7].0/],
   ['ie', /MSIE\s(7\.0)/],
@@ -169,8 +171,10 @@ const userAgentRules: UserAgentRule[] = [
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Mobile/],
   ['ios-webview', /AppleWebKit\/([0-9\.]+).*Gecko\)$/],
   ['curl', /^curl\/([0-9\.]+)$/],
+  ['nokia-communicator', /Nokia-Communicator-WWW-Browser\/(\d+\.\d+)/],
   ['searchbot', SEARCHBOX_UA_REGEX],
 ];
+
 const operatingSystemRules: OperatingSystemRule[] = [
   ['iOS', /iP(hone|od|ad)/],
   ['Android OS', /Android/],
@@ -198,6 +202,7 @@ const operatingSystemRules: OperatingSystemRule[] = [
   ['QNX', /QNX/],
   ['BeOS', /BeOS/],
   ['OS/2', /OS\/2/],
+  ['GEOS', /Geos/],
 ];
 
 export function detect(
